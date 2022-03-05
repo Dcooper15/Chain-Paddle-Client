@@ -8,7 +8,7 @@ import React, {
 import { ThemeContext } from "styled-components";
 import { Button } from "@material-ui/core";
 import axios from "axios";
-import { uuid } from "uuidv4";
+//import { uuid } from "uuidv4";
 import { StyledResearchIncStateYears } from "../../Styles/styledElements";
 import InsiderTradesCard from "./InsiderTradesCard";
 import { useStyles } from "../../Styles/muiStyles";
@@ -71,7 +71,7 @@ isEmptyInsiderTrades }) => {
       return (
         <div style={style}>
           <InsiderTradesCard
-            key={uuid()}
+            // key={uuid()}
             transactionDate={transactionDate}
             filingDate={filingDate}
             acquistionOrDisposition={acquistionOrDisposition}

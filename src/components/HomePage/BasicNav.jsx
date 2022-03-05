@@ -4,6 +4,7 @@ import {
   StyledNavbar,
   LogoPlaceholder,
 } from "../Styles/styledElements";
+import AuthNav from "../auth/auth-nav";
 import { Button } from "@material-ui/core";
 import { FaUserAstronaut, FaCloudSun } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
@@ -11,11 +12,7 @@ import { IoIosCloudyNight } from "react-icons/io";
 
 const BasicNav = ({ lightDarkChange, theme }) => {
   const [userMessage, setUserMessage] = useState([]);
-  const handleUserClick = () => {
-    userMessage.length
-      ? setUserMessage([])
-      : setUserMessage("Profile/Settings coming soon");
-  };
+
   return (
     <>
       <StyledNavbar>
@@ -39,15 +36,19 @@ const BasicNav = ({ lightDarkChange, theme }) => {
           size="medium"
         ></Button>{" "}
         <Button
-          onClick={handleUserClick}
           startIcon={
-            <FaUserAstronaut
-              style={{ color: theme === "light" ? "#00afc9" : "#d4af37" }}
-            />
+            <StyledNavLink to="/profile">
+              <FaUserAstronaut
+                style={{ color: theme === "light" ? "#00afc9" : "#d4af37" }}
+              />
+            </StyledNavLink>
           }
           size="medium"
         ></Button>
-        <LogoPlaceholder>Chain Paddle</LogoPlaceholder>
+      
+          <AuthNav /> 
+   
+
       </StyledNavbar>
       <i
         style={{

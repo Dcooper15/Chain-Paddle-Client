@@ -3,13 +3,11 @@ import { ThemeContext } from "styled-components";
 import { SectorHeader } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
 import axios from "axios";
-import Moment from "react-moment";
 import { useParams } from "react-router";
 import { Card, Button } from "@material-ui/core";
 import MapCardHeader from "../DataPoints/MapCardHeader";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 
-const date = new Date();
 let symbolArray = [];
 
 function SectorStocks() {
@@ -17,6 +15,7 @@ function SectorStocks() {
   const theme = useContext(ThemeContext);
   const [dataArray, setDataArray] = useState([]);
   const [handleTypeChange, setHandleTypeChange] = useState(false);
+
   const { sector } = useParams();
 
   const buttonHandlerPut = () => {
@@ -169,23 +168,6 @@ function SectorStocks() {
                 <MapCardHeader option={option} />
 
                 <MapDataPoints option={option} mapType={"call"} />
-                <>
-                  <>Exp Date </>
-                  <Moment
-                    add={{
-                      days: Object.keys(option.callExpDateMap).map((entry) => {
-                        return Object.keys(option.callExpDateMap[entry]).map(
-                          (innerArrayID) =>
-                            option.callExpDateMap[entry][innerArrayID][0]
-                              .daysToExpiration
-                        );
-                      })[0][1],
-                    }}
-                    format="MMM DD"
-                  >
-                    {date}
-                  </Moment>
-                </>
               </Card>
             ))
           )
@@ -203,23 +185,6 @@ function SectorStocks() {
                 <MapCardHeader option={option} />
 
                 <MapDataPoints option={option} mapType={"put"} />
-                <>
-                  <>Exp Date </>
-                  <Moment
-                    add={{
-                      days: Object.keys(option.callExpDateMap).map((entry) => {
-                        return Object.keys(option.callExpDateMap[entry]).map(
-                          (innerArrayID) =>
-                            option.callExpDateMap[entry][innerArrayID][0]
-                              .daysToExpiration
-                        );
-                      })[0][1],
-                    }}
-                    format="MMM DD"
-                  >
-                    {date}
-                  </Moment>
-                </>
               </Card>
             ))
           )

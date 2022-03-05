@@ -3,7 +3,6 @@ import { ThemeContext } from "styled-components";
 import { StyledChainError } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
 import axios from "axios";
-import Moment from "react-moment";
 import { Card } from "@material-ui/core";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 import MapCardHeader from "../DataPoints/MapCardHeader";
@@ -28,7 +27,7 @@ const ResearchChainData = ({ submittedText }) => {
           borderColor: "#00afc9",
           color: "#002933",
         };
-  
+
   useEffect(() => {
     if (isMounted.current) {
       setChainError([]);
@@ -64,23 +63,6 @@ const ResearchChainData = ({ submittedText }) => {
             {" "}
             <MapCardHeader option={option} />
             <MapDataPoints option={option} mapType={"call"} />
-            <>
-              <>Exp Date </>
-              <Moment
-                add={{
-                  days: Object.keys(option.callExpDateMap).map((entry) => {
-                    return Object.keys(option.callExpDateMap[entry]).map(
-                      (innerArrayID) =>
-                        option.callExpDateMap[entry][innerArrayID][0]
-                          .daysToExpiration
-                    );
-                  })[0][1],
-                }}
-                format="MMM DD"
-              >
-                {date}
-              </Moment>
-            </>
           </Card>
         ))
       ) : (

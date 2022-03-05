@@ -59,16 +59,16 @@ export const StyledNavbar = styled.div`
   width: 100%;
 `;
 export const LogoPlaceholder = styled.div`
-color: ${(props) => props.theme.accentColor};
-font-family: Brush Script MT;
-font-size: 24px;
-//display: flex;
-justify-content: right;
-align-content: flex-end;
+  color: ${(props) => props.theme.accentColor};
+  font-family: Brush Script MT;
+  font-size: 24px;
+  //display: flex;
+  justify-content: right;
+  align-content: flex-end;
 
-margin-right: 2%;
-margin-left: auto;
-`
+  margin-right: 2%;
+  margin-left: auto;
+`;
 //Sectors Page
 export const SectorContainer = styled.div`
   justify-content: center;
@@ -210,7 +210,7 @@ export const HomeMenuItemContainer = styled.div`
   flex-direction: column;
   color: #ffdbd6;
   border-radius: 15px;
-  margin: 4% 2%;  
+  margin: 4% 2%;
   font-size: 30px;
   padding: 20px;
   flex-grow: 1;
@@ -1094,3 +1094,62 @@ export const ImpressionsContainer = styled.div`
   }
 `;
 
+export const StyledLoginButton = styled.button`
+  color: ${(props) => props.theme.accentColor};
+  background: ${(props) => props.theme.body};
+  border-color: ${(props) => props.theme.accentColor};
+  border-width: thin;
+  font-weight: bold;
+  border-radius: 15px;
+
+  font-size: 20px;
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+`;
+
+export const ThemeColorContainer = styled.div`
+  color: ${(props) => props.theme.accentColor};
+  font-size: 16px;
+`;
+
+//comments
+
+export const CommentsContainer = styled.div`
+max-height: 400px;
+overflow-y: scroll;
+`;
+export const StyledDiscussionHeader = styled.h3`
+  color: ${(props) => props.theme.accentColor};
+  font-size: 20px;
+  @media (max-width: 800px) {
+    font-size: 18px;
+  }
+`;
+
+export const CommentsHeaderContainer = styled.div`
+  color: ${(props) => props.theme.accentColor};
+  align-items: flex-start;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  width: 100%;
+`;
+export const StyledCommentsUsername = styled.strong`
+  padding: 1%;
+  flex-wrap: nowrap;
+`;
+export const StyledCommentsDate = styled.i`
+  padding: 1%;
+  display: inline-flex;
+  width: 100%;
+  flex-wrap: nowrap;
+`;
+
+export const CreateCommentContainer = styled.div`
+margin-right: 2%;
+`;
+
+export const PostLengthContainer = styled.i`
+color: ${(props) => props.theme.accentColor};
+margin-left: 2%;
+`;

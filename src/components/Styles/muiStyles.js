@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import { GiFlexibleLamp } from "react-icons/gi";
 
 export const useStyles = makeStyles({
   buttonDark: {
@@ -281,6 +282,32 @@ export const useStyles = makeStyles({
     // border: "1px solid #00afc9",
     boxShadow: "0 3px 5px 2px rgba(0, 47, 54, .8)",
     borderRadius: 7
+  },
+  signUpButtonDark: {
+    //background: "linear-gradient(45deg, #d4af37 30%, #EEBC1D 90%)",
+    borderColor: "#d4af37",
+    //border: 2,
+    //borderRadius: 3,
+    //boxShadow: "0 3px 5px 2px rgba(212, 175, 55, .5)",
+    color: "#d4af37",
+    margin: "auto",
+    justifyContent: "center",
+    fontSize: "22px",
+    textAlign: "center",
+    display: "grid"
+  },
+  navSignUpButtonDark: {
+    //background: "linear-gradient(45deg, #d4af37 30%, #EEBC1D 90%)",
+    borderColor: "#d4af37",
+    //border: 2,
+    //borderRadius: 3,
+    //boxShadow: "0 3px 5px 2px rgba(212, 175, 55, .5)",
+    color: "#d4af37",
+    margin: "auto",
+    justifyContent: "center",
+    fontSize: "12px",
+    textAlign: "center",
+    display: "grid"
   },
 
 });

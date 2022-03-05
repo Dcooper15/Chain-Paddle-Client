@@ -8,7 +8,7 @@ import {
 } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
 import axios from "axios";
-import Moment from "react-moment";
+
 import {
   Card,
   Button,
@@ -327,23 +327,6 @@ const Twit = () => {
                 <MapCardHeader option={option} />
 
                 <MapDataPoints option={option} mapType={"call"} />
-                <>
-                  <>Exp Date </>
-                  <Moment
-                    add={{
-                      days: Object.keys(option.callExpDateMap).map((entry) => {
-                        return Object.keys(option.callExpDateMap[entry]).map(
-                          (innerArrayID) =>
-                            option.callExpDateMap[entry][innerArrayID][0]
-                              .daysToExpiration
-                        );
-                      })[0][1],
-                    }}
-                    format="MMM DD"
-                  >
-                    {date}
-                  </Moment>
-                </>
               </Card>
             ))
           )
@@ -367,23 +350,6 @@ const Twit = () => {
                 <MapCardHeader option={option} />
 
                 <MapDataPoints option={option} mapType={"put"} />
-                <>
-                  <>Exp Date </>
-                  <Moment
-                    add={{
-                      days: Object.keys(option.callExpDateMap).map((entry) => {
-                        return Object.keys(option.callExpDateMap[entry]).map(
-                          (innerArrayID) =>
-                            option.callExpDateMap[entry][innerArrayID][0]
-                              .daysToExpiration
-                        );
-                      })[0][1],
-                    }}
-                    format="MMM DD"
-                  >
-                    {date}
-                  </Moment>
-                </>
               </Card>
             ))
           )
