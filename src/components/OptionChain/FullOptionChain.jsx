@@ -317,6 +317,7 @@ function FullOptionChain() {
                 .map((stock) =>
                   stock.map((option) => (
                     <Card
+                      key={option.description}
                       className={classes.card}
                       style={getCardColors}
                       variant="outlined"
@@ -340,7 +341,6 @@ function FullOptionChain() {
                         option={option}
                         chainPrice={chainPrice}
                       />
-
                     </Card>
                   ))
                 )
@@ -352,6 +352,7 @@ function FullOptionChain() {
                 .map((stock) =>
                   stock.map((option) => (
                     <Card
+                      key={option.description}
                       className={classes.card}
                       style={getCardColors}
                       variant="outlined"
@@ -377,7 +378,6 @@ function FullOptionChain() {
                         mapType={"put"}
                         date={date}
                       />
-                    
                     </Card>
                   ))
                 )

@@ -1,4 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {
+  //useEffect,
+  //useState,
+  useContext,
+} from "react";
 import {
   CommentsHeaderContainer,
   StyledCommentsDate,
@@ -24,7 +28,7 @@ const CommentsCard = ({ comment }) => {
           borderColor: "#00afc9",
           color: "#002933",
         };
-  // console.log(Moment(comment.date_created).format('MMMM Do YYYY, h:mm:ss a'))
+
   return (
     <>
       <Card
@@ -39,7 +43,7 @@ const CommentsCard = ({ comment }) => {
             {comment.user_nickname}
           </StyledCommentsUsername>
           <StyledCommentsDate>
-            <Moment format='MMM DD, h:mma'>{comment.date_created}</Moment>
+            <Moment format="MMM DD, h:mma">{comment.date_created}</Moment>
           </StyledCommentsDate>
         </CommentsHeaderContainer>
         <br></br>

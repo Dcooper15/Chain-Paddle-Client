@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledNavLink,
   StyledNavbar,
-  LogoPlaceholder,
+  //LogoPlaceholder,
 } from "../Styles/styledElements";
 import AuthNav from "../auth/auth-nav";
 import { Button } from "@material-ui/core";
@@ -11,8 +11,6 @@ import { IoHome } from "react-icons/io5";
 import { IoIosCloudyNight } from "react-icons/io";
 
 const BasicNav = ({ lightDarkChange, theme }) => {
-  const [userMessage, setUserMessage] = useState([]);
-
   return (
     <>
       <StyledNavbar>
@@ -45,20 +43,8 @@ const BasicNav = ({ lightDarkChange, theme }) => {
           }
           size="medium"
         ></Button>
-      
-          <AuthNav /> 
-   
-
+        <AuthNav />
       </StyledNavbar>
-      <i
-        style={{
-          color: theme === "light" ? "#00afc9" : "#d4af37",
-          fontSize: "10px",
-          marginLeft: "2%",
-        }}
-      >
-        {userMessage}
-      </i>
     </>
   );
 };

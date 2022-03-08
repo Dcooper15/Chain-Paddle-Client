@@ -7,7 +7,6 @@ import { Card } from "@material-ui/core";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 import MapCardHeader from "../DataPoints/MapCardHeader";
 
-const date = new Date();
 const ResearchChainData = ({ submittedText }) => {
   const classes = useStyles();
   const theme = useContext(ThemeContext);

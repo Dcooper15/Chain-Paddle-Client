@@ -1,10 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useRecoilState, 
+  //useRecoilValue 
+} from "recoil";
+import {
+  dataDisplayState,
+  //toggleDataDisplayState,
+} from "../../recoil/atoms/globalState";
 import { ThemeContext } from "styled-components";
 import { SectorHeader } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
 import axios from "axios";
 import { useParams } from "react-router";
 import { Card, Button } from "@material-ui/core";
+import DataGridDisplay from "../DataGrid/DataGridDisplay";
 import MapCardHeader from "../DataPoints/MapCardHeader";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 
@@ -15,6 +23,8 @@ function SectorStocks() {
   const theme = useContext(ThemeContext);
   const [dataArray, setDataArray] = useState([]);
   const [handleTypeChange, setHandleTypeChange] = useState(false);
+  const [showGridData, setShowGridData] = useRecoilState(dataDisplayState);
+  const toggleGrid = () => setShowGridData(!showGridData);
 
   const { sector } = useParams();
 
@@ -25,6 +35,7 @@ function SectorStocks() {
     setHandleTypeChange(false);
   };
 
+  console.log(showGridData);
   let sectorError = [];
   switch (sector) {
     case "tech":
@@ -83,7 +94,7 @@ function SectorStocks() {
   const capHeader = (header) => {
     return header.charAt(0).toUpperCase() + header.slice(1);
   };
-
+  console.log("tog grid", toggleGrid);
   const getButtonColor = theme.name === "dark" ? "#fff" : "#F8E4A5";
   const getCardColors =
     theme.name === "dark"
@@ -155,38 +166,95 @@ function SectorStocks() {
       >
         <strong style={{ color: getButtonColor }}>Put</strong>
       </Button>
+      <br></br>
+      <Button
+        variant="outlined"
+        className={
+          theme.name === "dark"
+            ? classes.dataDisplayButtonDark
+            : classes.dataDisplayButtonLight
+        }
+        type="submit"
+        size="small"
+        onClick={toggleGrid}
+      >
+        {showGridData ? "Display as Cards" : "Display as Grid"}
+      </Button>
+
+      {!!dataArray.length ? (
+        showGridData && !handleTypeChange ? (
+          <DataGridDisplay
+            option={
+              !!dataArray.length
+                ? dataArray.map((stock) => stock.map((option) => option))
+                : " "
+            }
+            mapType={"call"}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        " "
+      )}
       {!!dataArray.length
         ? dataArray.map((stock) =>
-            stock.map((option) => (
-              <Card
-                className={classes.card}
-                style={getCardColors}
-                variant="outlined"
-                hidden={handleTypeChange === true}
-                raised={true}
-              >
-                <MapCardHeader option={option} />
+            stock.map((option) =>
+              !showGridData ? (
+                <Card
+                  key={option.symbol}
+                  className={classes.card}
+                  style={getCardColors}
+                  variant="outlined"
+                  hidden={handleTypeChange === true}
+                  raised={true}
+                >
+                  <MapCardHeader option={option} />
 
-                <MapDataPoints option={option} mapType={"call"} />
-              </Card>
-            ))
+                  <MapDataPoints option={option} mapType={"call"} />
+                </Card>
+              ) : (
+                ""
+              )
+            )
           )
         : " "}
+      {!!dataArray.length ? (
+        showGridData && handleTypeChange ? (
+          <DataGridDisplay
+            option={
+              !!dataArray.length
+                ? dataArray.map((stock) => stock.map((option) => option))
+                : " "
+            }
+            mapType={"put"}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        " "
+      )}
       {!!dataArray.length
         ? dataArray.map((stock) =>
-            stock.map((option) => (
-              <Card
-                className={classes.card}
-                style={getCardColors}
-                variant="outlined"
-                hidden={handleTypeChange === false}
-                raised={true}
-              >
-                <MapCardHeader option={option} />
+            stock.map((option) =>
+              !showGridData ? (
+                <Card
+                  key={option.symbol}
+                  className={classes.card}
+                  style={getCardColors}
+                  variant="outlined"
+                  hidden={handleTypeChange === false}
+                  raised={true}
+                >
+                  <MapCardHeader option={option} />
 
-                <MapDataPoints option={option} mapType={"put"} />
-              </Card>
-            ))
+                  <MapDataPoints option={option} mapType={"put"} />
+                </Card>
+              ) : (
+                ""
+              )
+            )
           )
         : " "}
     </>

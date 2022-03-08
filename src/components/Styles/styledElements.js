@@ -1116,8 +1116,8 @@ export const ThemeColorContainer = styled.div`
 //comments
 
 export const CommentsContainer = styled.div`
-max-height: 400px;
-overflow-y: scroll;
+  max-height: 400px;
+  overflow-y: scroll;
 `;
 export const StyledDiscussionHeader = styled.h3`
   color: ${(props) => props.theme.accentColor};
@@ -1146,10 +1146,18 @@ export const StyledCommentsDate = styled.i`
 `;
 
 export const CreateCommentContainer = styled.div`
-margin-right: 2%;
+  margin-right: 2%;
 `;
 
 export const PostLengthContainer = styled.i`
-color: ${(props) => props.theme.accentColor};
-margin-left: 2%;
+  color: ${(props) => props.theme.accentColor};
+  margin-left: 2%;
+`;
+
+//data grid
+export const DataGridContainer = styled.div`
+  width: 98%;
+  margin-left: 1%;
+  margin-right: 2%;
+  margin-top: 1%;
 `;

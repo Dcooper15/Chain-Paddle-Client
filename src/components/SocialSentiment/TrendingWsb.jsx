@@ -10,6 +10,15 @@ import axios from "axios";
 import { Card, Button } from "@material-ui/core";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 import MapCardHeader from "../DataPoints/MapCardHeader";
+import {
+  useRecoilState,
+  //useRecoilValue
+} from "recoil";
+import {
+  dataDisplayState,
+  //toggleDataDisplayState,
+} from "../../recoil/atoms/globalState";
+import DataGridDisplay from "../DataGrid/DataGridDisplay";
 
 const monthNames = [
   "january",
@@ -37,6 +46,8 @@ function TrendingWsb() {
   const [handleThreadChange, setHandleThreadChange] = useState(["All"]);
   const [minutes, setMinutes] = useState([]);
   const [occurences, setOccurences] = useState([]);
+  const [showGridData, setShowGridData] = useRecoilState(dataDisplayState);
+  const toggleGrid = () => setShowGridData(!showGridData);
 
   const buttonHandlerPut = () => {
     setHandleTypeChange(true);
@@ -324,36 +335,30 @@ function TrendingWsb() {
       >
         <strong style={{ color: getButtonColor }}>Put</strong>
       </Button>
+      <br></br>
+      <Button
+        variant="outlined"
+        className={
+          theme.name === "dark"
+            ? classes.dataDisplayButtonDark
+            : classes.dataDisplayButtonLight
+        }
+        type="submit"
+        size="small"
+        onClick={toggleGrid}
+      >
+        {showGridData ? "Display as Cards" : "Display as Grid"}
+      </Button>
       {!!marketData.length ? (
         marketData.map((stock) =>
-          stock.map((option) => (
-            <Card
-              className={classes.card}
-              style={getCardColors}
-              variant="outlined"
-              hidden={handleTypeChange === true}
-              raised={true}
-            >
-              <i>
-                {occurences[occurences.indexOf(option.symbol) + 1]} mention(s)
-                in last {minutes} minutes
-              </i>
-              <MapCardHeader option={option} />
-              <MapDataPoints option={option} mapType={"call"} />
-            </Card>
-          ))
-        )
-      ) : (
-        <SectorHeader>scanning...</SectorHeader>
-      )}
-      {!!marketData.length
-        ? marketData.map((stock) =>
-            stock.map((option) => (
+          stock.map((option) =>
+            !showGridData ? (
               <Card
+                key={option.symbol}
                 className={classes.card}
                 style={getCardColors}
                 variant="outlined"
-                hidden={handleTypeChange === false}
+                hidden={handleTypeChange === true}
                 raised={true}
               >
                 <i>
@@ -361,12 +366,76 @@ function TrendingWsb() {
                   in last {minutes} minutes
                 </i>
                 <MapCardHeader option={option} />
-
-                <MapDataPoints option={option} mapType={"put"} />
+                <MapDataPoints option={option} mapType={"call"} />
               </Card>
-            ))
+            ) : (
+              ""
+            )
+          )
+        )
+      ) : (
+        <SectorHeader>scanning...</SectorHeader>
+      )}
+
+      {!!marketData.length ? (
+        showGridData && !handleTypeChange ? (
+          <DataGridDisplay
+            option={
+              !!marketData.length
+                ? marketData.map((stock) => stock.map((option) => option))
+                : " "
+            }
+            mapType={"call"}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        " "
+      )}
+
+      {!!marketData.length
+        ? marketData.map((stock) =>
+            stock.map((option) =>
+              !showGridData ? (
+                <Card
+                  key={option.symbol}
+                  className={classes.card}
+                  style={getCardColors}
+                  variant="outlined"
+                  hidden={handleTypeChange === false}
+                  raised={true}
+                >
+                  <i>
+                    {occurences[occurences.indexOf(option.symbol) + 1]}{" "}
+                    mention(s) in last {minutes} minutes
+                  </i>
+                  <MapCardHeader option={option} />
+
+                  <MapDataPoints option={option} mapType={"put"} />
+                </Card>
+              ) : (
+                ""
+              )
+            )
           )
         : " "}
+      {!!marketData.length ? (
+        showGridData && handleTypeChange ? (
+          <DataGridDisplay
+            option={
+              !!marketData.length
+                ? marketData.map((stock) => stock.map((option) => option))
+                : " "
+            }
+            mapType={"put"}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        " "
+      )}
     </>
   );
 }

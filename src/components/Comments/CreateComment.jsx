@@ -1,4 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, {
+  //useEffect,
+  useState,
+  useContext,
+} from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ThemeContext } from "styled-components";
 import {
