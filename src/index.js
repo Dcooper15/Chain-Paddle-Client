@@ -3,10 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter as Router } from "react-router-dom";
+import Auth0ProviderWithHistory from "./components/auth/auth0-provider-with-history";
+import { RecoilRoot } from "recoil";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RecoilRoot>
+      <Router>
+        <Auth0ProviderWithHistory>
+          <App />
+        </Auth0ProviderWithHistory>
+      </Router>
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -4,7 +4,7 @@ import {
   SectorHeader,
   StyledExpDate,
   StyledMenuItem,
-  StyledOcCollateral,
+
   //StyledSliderActiveButton,
 } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
@@ -317,6 +317,7 @@ function FullOptionChain() {
                 .map((stock) =>
                   stock.map((option) => (
                     <Card
+                      key={option.description}
                       className={classes.card}
                       style={getCardColors}
                       variant="outlined"
@@ -334,29 +335,12 @@ function FullOptionChain() {
                         setStrikeHandler={sliderStrikeHandler}
                         setPremiumHandler={sliderPremiumHandler}
                       />
-                      <br></br>
-                      <StyledOcCollateral>
-                        CC Premium to 100 Shares Ratio{" "}
-                        {(
-                          ((option.mark * 100) / (chainPrice * 100)) *
-                          100
-                        ).toFixed(2)}
-                        %
-                      </StyledOcCollateral>
-                      <br></br>
-                      <MapFullChainData option={option} />
 
-                      <>
-                        <>Exp Date </>
-                        <>
-                          <Moment
-                            add={{ days: option.daysToExpiration }}
-                            format="MMM DD"
-                          >
-                            {date}
-                          </Moment>
-                        </>
-                      </>
+                      <br></br>
+                      <MapFullChainData
+                        option={option}
+                        chainPrice={chainPrice}
+                      />
                     </Card>
                   ))
                 )
@@ -368,6 +352,7 @@ function FullOptionChain() {
                 .map((stock) =>
                   stock.map((option) => (
                     <Card
+                      key={option.description}
                       className={classes.card}
                       style={getCardColors}
                       variant="outlined"
@@ -385,27 +370,14 @@ function FullOptionChain() {
                         setStrikeHandler={sliderStrikeHandler}
                         setPremiumHandler={sliderPremiumHandler}
                       />
-                      <StyledOcCollateral>
-                        CSP Premium to Collateral Ratio{" "}
-                        {(
-                          ((option.mark * 100) / (option.strikePrice * 100)) *
-                          100
-                        ).toFixed(2)}
-                        %
-                      </StyledOcCollateral>
+
                       <br></br>
-                      <MapFullChainData option={option} mapType={"put"} />
-                      <>
-                        <>Exp Date </>
-                        <>
-                          <Moment
-                            add={{ days: option.daysToExpiration }}
-                            format="MMM DD"
-                          >
-                            {date}
-                          </Moment>
-                        </>
-                      </>
+                      <MapFullChainData
+                        option={option}
+                        chainPrice={chainPrice}
+                        mapType={"put"}
+                        date={date}
+                      />
                     </Card>
                   ))
                 )

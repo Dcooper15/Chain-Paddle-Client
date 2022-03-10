@@ -13,6 +13,8 @@ import StockPrice from "./StockPrice";
 import StockPercentChange from "./StockPercentChange";
 import { HiLink } from "react-icons/hi";
 
+
+
 const MapCardHeader = ({ option }) => {
   return (
     <>
@@ -37,6 +39,7 @@ const MapCardHeader = ({ option }) => {
               />
             </StyledSymbolLink>
           </Button>
+         
         </CardRow>
         <StyledName>
           <Name namesRender={option.underlying.description} />

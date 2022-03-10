@@ -8,7 +8,7 @@ import {
 } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
 import axios from "axios";
-import Moment from "react-moment";
+
 import {
   Card,
   Button,
@@ -19,8 +19,16 @@ import {
 } from "@material-ui/core";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 import MapCardHeader from "../DataPoints/MapCardHeader";
+import {
+  useRecoilState,
+  //useRecoilValue
+} from "recoil";
+import {
+  dataDisplayState,
+  //toggleDataDisplayState,
+} from "../../recoil/atoms/globalState";
+import DataGridDisplay from "../DataGrid/DataGridDisplay";
 
-const date = new Date();
 const addCommas = /\B(?=(\d{3})+(?!\d))/g;
 
 const Twit = () => {
@@ -38,6 +46,8 @@ const Twit = () => {
   const [open, setOpen] = useState(false);
   const [handleTypeChange, setHandleTypeChange] = useState(false);
   const [occurences, setOccurences] = useState([]);
+  const [showGridData, setShowGridData] = useRecoilState(dataDisplayState);
+  const toggleGrid = () => setShowGridData(!showGridData);
 
   const handleSelectedDataChange = (event) => {
     setSelectedData(event.target.value);
@@ -308,86 +318,116 @@ const Twit = () => {
       ) : (
         ""
       )}
+      <br></br>
+      <Button
+        variant="outlined"
+        className={
+          theme.name === "dark"
+            ? classes.dataDisplayButtonDark
+            : classes.dataDisplayButtonLight
+        }
+        type="submit"
+        size="small"
+        onClick={toggleGrid}
+      >
+        {showGridData ? "Display as Cards" : "Display as Grid"}
+      </Button>
       {!!sentimentData.length
         ? sentimentData.map((stock) =>
-            stock.map((option) => (
-              <Card
-                className={classes.card}
-                style={getCardColors}
-                variant="outlined"
-                hidden={handleTypeChange === true}
-                raised={true}
-              >
-                <ImpressionsContainer>
-                  {" "}
-                  {option.symbol +
-                    " " +
-                    getOccurenceValue(option.symbol, selectedData, occurences)}
-                </ImpressionsContainer>
-                <MapCardHeader option={option} />
+            stock.map((option) =>
+              !showGridData ? (
+                <Card
+                  key={option.symbol}
+                  className={classes.card}
+                  style={getCardColors}
+                  variant="outlined"
+                  hidden={handleTypeChange === true}
+                  raised={true}
+                >
+                  <ImpressionsContainer>
+                    {" "}
+                    {option.symbol +
+                      " " +
+                      getOccurenceValue(
+                        option.symbol,
+                        selectedData,
+                        occurences
+                      )}
+                  </ImpressionsContainer>
+                  <MapCardHeader option={option} />
 
-                <MapDataPoints option={option} mapType={"call"} />
-                <>
-                  <>Exp Date </>
-                  <Moment
-                    add={{
-                      days: Object.keys(option.callExpDateMap).map((entry) => {
-                        return Object.keys(option.callExpDateMap[entry]).map(
-                          (innerArrayID) =>
-                            option.callExpDateMap[entry][innerArrayID][0]
-                              .daysToExpiration
-                        );
-                      })[0][1],
-                    }}
-                    format="MMM DD"
-                  >
-                    {date}
-                  </Moment>
-                </>
-              </Card>
-            ))
+                  <MapDataPoints option={option} mapType={"call"} />
+                </Card>
+              ) : (
+                ""
+              )
+            )
           )
         : " "}
+      {!!sentimentData.length ? (
+        showGridData && !handleTypeChange ? (
+          <DataGridDisplay
+            option={
+              !!sentimentData.length
+                ? sentimentData.map((stock) => stock.map((option) => option))
+                : " "
+            }
+            mapType={"call"}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        " "
+      )}
       {!!sentimentData.length
         ? sentimentData.map((stock) =>
-            stock.map((option) => (
-              <Card
-                className={classes.card}
-                style={getCardColors}
-                variant="outlined"
-                hidden={handleTypeChange === false}
-                raised={true}
-              >
-                <ImpressionsContainer>
-                  {" "}
-                  {option.symbol +
-                    " " +
-                    getOccurenceValue(option.symbol, selectedData, occurences)}
-                </ImpressionsContainer>
-                <MapCardHeader option={option} />
+            stock.map((option) =>
+              !showGridData ? (
+                <Card
+                  key={option.symbol}
+                  className={classes.card}
+                  style={getCardColors}
+                  variant="outlined"
+                  hidden={handleTypeChange === false}
+                  raised={true}
+                >
+                  <ImpressionsContainer>
+                    {" "}
+                    {option.symbol +
+                      " " +
+                      getOccurenceValue(
+                        option.symbol,
+                        selectedData,
+                        occurences
+                      )}
+                  </ImpressionsContainer>
+                  <MapCardHeader option={option} />
 
-                <MapDataPoints option={option} mapType={"put"} />
-                <>
-                  <>Exp Date </>
-                  <Moment
-                    add={{
-                      days: Object.keys(option.callExpDateMap).map((entry) => {
-                        return Object.keys(option.callExpDateMap[entry]).map(
-                          (innerArrayID) =>
-                            option.callExpDateMap[entry][innerArrayID][0]
-                              .daysToExpiration
-                        );
-                      })[0][1],
-                    }}
-                    format="MMM DD"
-                  >
-                    {date}
-                  </Moment>
-                </>
-              </Card>
-            ))
+                  <MapDataPoints option={option} mapType={"put"} />
+                </Card>
+              ) : (
+                ""
+              )
+            )
           )
         : " "}
+      {!!sentimentData.length ? (
+        showGridData && handleTypeChange ? (
+          <DataGridDisplay
+            option={
+              !!sentimentData.length
+                ? sentimentData.map((stock) => stock.map((option) => option))
+                : " "
+            }
+            mapType={"put"}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        " "
+      )}
     </>
   );
 };

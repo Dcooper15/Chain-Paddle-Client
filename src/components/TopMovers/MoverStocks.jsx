@@ -1,17 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
+import {
+  useRecoilState,
+  // useRecoilValue
+} from "recoil";
+import {
+  dataDisplayState,
+  //showGridToggle,
+} from "../../recoil/atoms/globalState";
 import { ThemeContext } from "styled-components";
 import { SectorHeader, ButtonDiv } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
 import axios from "axios";
 import { useParams } from "react-router";
-import Moment from "react-moment";
 import { Card, Button } from "@material-ui/core";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 import MapCardHeader from "../DataPoints/MapCardHeader";
+import DataGridDisplay from "../DataGrid/DataGridDisplay";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 let header = [];
-const date = new Date();
 
 function MoverStocks() {
   const classes = useStyles();
@@ -19,6 +26,8 @@ function MoverStocks() {
   const [marketData, setMarketData] = useState([]);
   const [handleTypeChange, setHandleTypeChange] = useState(false);
   const [direction, setDirection] = useState("up");
+  const [showGridData, setShowGridData] = useRecoilState(dataDisplayState);
+  const toggleGrid = () => setShowGridData(!showGridData);
   const { market } = useParams();
 
   const buttonHandlerPut = () => {
@@ -234,81 +243,97 @@ function MoverStocks() {
       >
         <strong style={{ color: getButtonColor }}>Put</strong>
       </Button>
+      <br></br>
+      <Button
+        variant="outlined"
+        className={
+          theme.name === "dark"
+            ? classes.dataDisplayButtonDark
+            : classes.dataDisplayButtonLight
+        }
+        type="submit"
+        size="small"
+        onClick={toggleGrid}
+      >
+        {showGridData ? "Display as Cards" : "Display as Grid"}
+      </Button>
+      {!!marketData.length ? (
+        showGridData && !handleTypeChange ? (
+          <DataGridDisplay
+            option={
+              !!marketData.length
+                ? marketData.map((stock) => stock.map((option) => option))
+                : " "
+            }
+            mapType={"call"}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        " "
+      )}
       {!!marketData.length ? (
         marketData.map((stock) =>
-          stock.map((option) => (
-            <Card
-              className={classes.card}
-              style={
-                getCardColors
-              }
-              variant="outlined"
-              hidden={handleTypeChange === true}
-              raised={true}
-            >
-              <MapCardHeader option={option} />
-              <MapDataPoints option={option} mapType={"call"} />
-
-              <>Exp Date </>
-              <>
-                <Moment
-                  add={{
-                    days: Object.keys(option.callExpDateMap).map((entry) => {
-                      return Object.keys(option.callExpDateMap[entry]).map(
-                        (innerArrayID) =>
-                          option.callExpDateMap[entry][innerArrayID][0]
-                            .daysToExpiration
-                      );
-                    })[0][1],
-                  }}
-                  format="MMM DD"
-                >
-                  {date}
-                </Moment>
-              </>
-            </Card>
-          ))
+          stock.map((option) =>
+            !showGridData ? (
+              <Card
+                key={option.symbol}
+                className={classes.card}
+                style={getCardColors}
+                variant="outlined"
+                hidden={handleTypeChange === true}
+                raised={true}
+              >
+                <MapCardHeader option={option} />
+                <MapDataPoints option={option} mapType={"call"} />
+              </Card>
+            ) : (
+              ""
+            )
+          )
         )
       ) : (
         <SectorHeader style={{ marginTop: "10%" }}>
           Top Movers unavailable on weekends and late hours
         </SectorHeader>
       )}
+      {!!marketData.length ? (
+        showGridData && handleTypeChange ? (
+          <DataGridDisplay
+            option={
+              !!marketData.length
+                ? marketData.map((stock) => stock.map((option) => option))
+                : " "
+            }
+            mapType={"put"}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        " "
+      )}
       {!!marketData.length
         ? marketData.map((stock) =>
-            stock.map((option) => (
-              <Card
-                className={classes.card}
-                style={
-                 getCardColors
-                }
-                variant="outlined"
-                hidden={handleTypeChange === false}
-                raised={true}
-              >
-                <MapCardHeader option={option} />
-                <></>
-                <MapDataPoints option={option} mapType={"put"} />
+            stock.map((option) =>
+              !showGridData ? (
+                <Card
+                  key={option.symbol}
+                  className={classes.card}
+                  style={getCardColors}
+                  variant="outlined"
+                  hidden={handleTypeChange === false}
+                  raised={true}
+                >
+                  <MapCardHeader option={option} />
 
-                <>
-                  <>Exp Date </>
-                  <Moment
-                    add={{
-                      days: Object.keys(option.callExpDateMap).map((entry) => {
-                        return Object.keys(option.callExpDateMap[entry]).map(
-                          (innerArrayID) =>
-                            option.callExpDateMap[entry][innerArrayID][0]
-                              .daysToExpiration
-                        );
-                      })[0][1],
-                    }}
-                    format="MMM DD"
-                  >
-                    {date}
-                  </Moment>
-                </>
-              </Card>
-            ))
+                  <MapDataPoints option={option} mapType={"put"} />
+                </Card>
+              ) : (
+                ""
+              )
+            )
           )
         : " "}
     </>

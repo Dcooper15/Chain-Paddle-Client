@@ -200,12 +200,11 @@ export const useStyles = makeStyles({
     //boxShadow: "0 3px 5px 2px rgba(212, 175, 55, .5)",
     color: "#fff",
     margin: 1,
-    marginBottom: '3%',
-    fontSize: '10px',
-    '@media (min-width: 800px)' : {
-      fontSize: '16px',
-    }
-   
+    marginBottom: "3%",
+    fontSize: "10px",
+    "@media (min-width: 800px)": {
+      fontSize: "16px",
+    },
   },
   wsbButtonLight: {
     background: "linear-gradient(45deg, #00afc9 5%, #002f36 99%)",
@@ -214,11 +213,11 @@ export const useStyles = makeStyles({
     boxShadow: "0 3px 5px 2px rgba(0, 47, 54, .8)",
     color: "#F8E4A5",
     margin: 1,
-    marginBottom: '3%',
-    fontSize: '10px',
-    '@media (min-width: 800px)' : {
-      fontSize: '16px',
-    }
+    marginBottom: "3%",
+    fontSize: "10px",
+    "@media (min-width: 800px)": {
+      fontSize: "16px",
+    },
   },
   wsbButtonDarkUns: {
     //background: "linear-gradient(45deg, #d4af37 10%, #756300 80%)",
@@ -227,23 +226,23 @@ export const useStyles = makeStyles({
     borderRadius: 3,
     color: "#d4af37",
     margin: 1,
-    marginBottom: '3%',
-    fontSize: '10px',
-    '@media (min-width: 800px)' : {
-      fontSize: '16px',
-    }
+    marginBottom: "3%",
+    fontSize: "10px",
+    "@media (min-width: 800px)": {
+      fontSize: "16px",
+    },
   },
   wsbButtonLightUns: {
-   // background: "linear-gradient(45deg, #002f36 60%, #00afc9 99%)",
+    // background: "linear-gradient(45deg, #002f36 60%, #00afc9 99%)",
     border: 2,
     borderRadius: 3,
     color: "#146175",
     margin: 1,
-    marginBottom: '3%',
-    fontSize: '10px',
-    '@media (min-width: 800px)' : {
-      fontSize: '16px',
-    }
+    marginBottom: "3%",
+    fontSize: "10px",
+    "@media (min-width: 800px)": {
+      fontSize: "16px",
+    },
   },
 
   //More Data
@@ -254,7 +253,7 @@ export const useStyles = makeStyles({
     margin: "1%",
     size: "small",
     border: "1px solid #d4af37",
-    borderRadius: 7
+    borderRadius: 7,
   },
   moreDataButtonDarkActive: {
     background: "linear-gradient(45deg, #d4af37 30%, #EEBC1D 90%)",
@@ -262,7 +261,7 @@ export const useStyles = makeStyles({
     margin: "1%",
     size: "small",
     border: "1px solid #d4af37",
-    borderRadius: 7
+    borderRadius: 7,
   },
 
   moreDataButtonLight: {
@@ -271,7 +270,7 @@ export const useStyles = makeStyles({
     margin: "1%",
     size: "small",
     border: "1px solid #146175",
-    borderRadius: 7
+    borderRadius: 7,
   },
   moreDataButtonLightActive: {
     background: "linear-gradient(45deg, #00afc9 5%, #002f36 99%)",
@@ -280,7 +279,49 @@ export const useStyles = makeStyles({
     size: "small",
     // border: "1px solid #00afc9",
     boxShadow: "0 3px 5px 2px rgba(0, 47, 54, .8)",
-    borderRadius: 7
+    borderRadius: 7,
+  },
+  signUpButtonDark: {
+    //background: "linear-gradient(45deg, #d4af37 30%, #EEBC1D 90%)",
+    borderColor: "#d4af37",
+    //border: 2,
+    //borderRadius: 3,
+    //boxShadow: "0 3px 5px 2px rgba(212, 175, 55, .5)",
+    color: "#d4af37",
+    margin: "auto",
+    justifyContent: "center",
+    fontSize: "22px",
+    textAlign: "center",
+    display: "grid",
+  },
+  navSignUpButtonDark: {
+    //background: "linear-gradient(45deg, #d4af37 30%, #EEBC1D 90%)",
+    borderColor: "#d4af37",
+    //border: 2,
+    //borderRadius: 3,
+    //boxShadow: "0 3px 5px 2px rgba(212, 175, 55, .5)",
+    color: "#d4af37",
+    margin: "auto",
+    justifyContent: "center",
+    fontSize: "12px",
+    textAlign: "center",
+    display: "grid",
   },
 
+  dataDisplayButtonLight: {
+    color: "#146175",
+    marginLeft: "2%",
+    marginTop: "3%",
+    size: "small",
+    border: "1px solid #146175",
+    borderRadius: 7,
+  },
+  dataDisplayButtonDark: {
+    color: "#d4af37",
+    marginLeft: "2%",
+    marginTop: "3%",
+    size: "small",
+    border: "1px solid #d4af37",
+    borderRadius: 7,
+  },
 });

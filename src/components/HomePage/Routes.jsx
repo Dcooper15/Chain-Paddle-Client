@@ -1,9 +1,11 @@
 import React from "react";
-import { StyledBackLink } from "../Styles/styledElements";
+
 import {
-  Route,
+  // Route,
+  Switch,
   //useHistory
 } from "react-router-dom";
+import ProtectedRoute from "../auth/protected-route";
 import MainTopMovers from "../TopMovers/MainTopMovers";
 import MoverStocks from "../TopMovers/MoverStocks";
 import FullOptionChain from "../OptionChain/FullOptionChain";
@@ -14,64 +16,47 @@ import TrendingWsb from "../SocialSentiment/TrendingWsb";
 import Earnings from "../Earnings/Earnings";
 import MainResearch from "../Research/MainResearch";
 import Twit from "../SocialSentiment/Twit";
-import { BiArrowBack } from "react-icons/bi";
+import Profile from "../Profile/profile";
 
 const Routes = () => {
   // let history = useHistory();
 
   return (
     <>
-      <Route exact path="/sector">
-        <br></br>
-        <StyledBackLink to="/">{<BiArrowBack />}</StyledBackLink>
-        <MainSectors />
-      </Route>
+      <Switch>
+        <ProtectedRoute exact path="/sector" component={MainSectors} />
 
-      <Route exact path="/topmovers">
-        <br></br>
-        <StyledBackLink to="/">{<BiArrowBack />}</StyledBackLink>
-        <MainTopMovers />
-      </Route>
-      <Route exact path="/social">
-        <br></br>
-        <StyledBackLink to="/">{<BiArrowBack />}</StyledBackLink>
-        <MainSocialSentiment />
-      </Route>
+        <ProtectedRoute exact path="/topmovers" component={MainTopMovers} />
 
-      <Route exact path="/social/trendingwsb">
-        <br></br>
-        <StyledBackLink to="/social">{<BiArrowBack />}</StyledBackLink>
+        <ProtectedRoute exact path="/social" component={MainSocialSentiment} />
 
-        <TrendingWsb />
-      </Route>
+        <ProtectedRoute
+          exact
+          path="/social/trendingwsb"
+          component={TrendingWsb}
+        />
 
-      <Route path="/topmovers/:market">
-        <br></br>
-        <StyledBackLink to="/topmovers">{<BiArrowBack />}</StyledBackLink>
+        <ProtectedRoute path="/topmovers/:market" component={MoverStocks} />
 
-        <MoverStocks />
-      </Route>
+        <ProtectedRoute path="/chain/:symbol" component={FullOptionChain} />
 
-      <Route path="/chain/:symbol">
-        <FullOptionChain />
-      </Route>
-      <Route path="/sector/:sector">
-        <br></br>
-        <StyledBackLink to="/sector">{<BiArrowBack />}</StyledBackLink>
+        <ProtectedRoute path="/sector/:sector" component={SectorStocks} />
 
-        <SectorStocks />
-      </Route>
-      <Route exact path="/earnings">
-        <Earnings />
-      </Route>
-      <Route exact path="/research">
-        <MainResearch />
-      </Route>
-      <Route exact path="/social/twitterstocktwits">
-        <br></br>
-        <StyledBackLink to="/social">{<BiArrowBack />}</StyledBackLink>
-        <Twit />
-      </Route>
+        <ProtectedRoute exact path="/earnings" component={Earnings} />
+
+        <ProtectedRoute exact path="/research" component={MainResearch} />
+
+        <ProtectedRoute
+          exact
+          path="/social/twitterstocktwits"
+          component={Twit}
+        />
+        <ProtectedRoute
+          exact
+          path="/profile"
+          component={Profile}
+        />
+      </Switch>
     </>
   );
 };
