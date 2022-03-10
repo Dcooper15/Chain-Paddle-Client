@@ -43,7 +43,7 @@ const CreateComment = ({ optionDescription, symbol, mapType }) => {
   const handleSubmitComment = (e) => {
     e.preventDefault();
     if (post === "" || postLength > 300) {
-      //check to make sure search text isn't blank
+      //check null/length
     } else {
       setSubmittedPost(post);
       axios

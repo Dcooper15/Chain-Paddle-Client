@@ -15,12 +15,12 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import BasicNav from "./components/HomePage/BasicNav";
 import Routes from "./components/HomePage/Routes";
 import MainMenu from "./components/HomePage/MainMenu";
+import MainNavigation from "./components/HomePage/Navigation/MainNavigation";
 //import TestConnection from "./components/TestServer/TestConnect";
 //import NavBar from "./components/auth/nav-bar";
 //import SignupHome from "./components/Signup/SignupHome";
 //import MainSearch from "./components/MainSearch";
 //import MyWatchList from "./components/HomePage/MyWatchList";
-
 import "./App.css";
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
 
       <Router>
         <BasicNav theme={theme} lightDarkChange={lightDarkChange} />
-
+        <MainNavigation />
         <Route exact path="/">
           {/* <SignupHome /> */}
 

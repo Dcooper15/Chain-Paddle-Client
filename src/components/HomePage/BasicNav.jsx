@@ -9,6 +9,7 @@ import { Button } from "@material-ui/core";
 import { FaUserAstronaut, FaCloudSun } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { IoIosCloudyNight } from "react-icons/io";
+//import MainLogo from "./MainLogo";
 
 const BasicNav = ({ lightDarkChange, theme }) => {
   return (
@@ -44,6 +45,7 @@ const BasicNav = ({ lightDarkChange, theme }) => {
           size="medium"
         ></Button>
         <AuthNav />
+        {/* <MainLogo /> */}
       </StyledNavbar>
     </>
   );

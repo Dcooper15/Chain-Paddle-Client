@@ -1161,3 +1161,14 @@ export const DataGridContainer = styled.div`
   margin-right: 2%;
   margin-top: 1%;
 `;
+
+//navigation
+
+export const BackButtonContainer = styled.div`
+  color: ${(props) => props.theme.accentColor};
+  margin-left: 1%;
+  font-size: 22px;
+  @media (max-width: 800px) {
+    font-size: 17px;
+  }
+`;
