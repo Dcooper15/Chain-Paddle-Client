@@ -27,7 +27,7 @@ const OptionComments = ({
   console.log("mapType", mapType);
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/comments/${optionCommentsToQuery}`)
+      .get(`${process.env.REACT_APP_SERVER_ROUTE}/comments/${optionCommentsToQuery}`)
       .then((response) => {
         console.log("res.data", response.data);
         setCommentsData([response.data.rows]);

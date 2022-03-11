@@ -47,7 +47,7 @@ const CreateComment = ({ optionDescription, symbol, mapType }) => {
     } else {
       setSubmittedPost(post);
       axios
-        .post(`http://localhost:3002/comments/create`, comment)
+        .post(`${process.env.REACT_APP_SERVER_ROUTE}/comments/create`, comment)
         .then(console.log("Comment Created"))
         .then(setSubmittedPost(""))
         .then(setPost(""));
