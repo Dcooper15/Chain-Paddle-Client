@@ -1162,6 +1162,12 @@ export const DataGridContainer = styled.div`
   margin-top: 1%;
 `;
 
+export const DataGridToggleContainer = styled.div`
+  color: ${(props) => props.theme.headerColor};
+  margin-left: 3%;
+  margin-top: 2%;
+`;
+
 //navigation
 
 export const BackButtonContainer = styled.div`
@@ -1171,4 +1177,12 @@ export const BackButtonContainer = styled.div`
   @media (max-width: 800px) {
     font-size: 17px;
   }
+`;
+
+//logos
+
+export const NavLogoContainer = styled.div`
+padding-top: 1%;
+margin-left: auto;
+position: relative;
 `;

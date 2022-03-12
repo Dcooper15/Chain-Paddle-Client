@@ -324,4 +324,40 @@ export const useStyles = makeStyles({
     border: "1px solid #d4af37",
     borderRadius: 7,
   },
+  gridToggleDark: {
+    color: "#d4af37",
+
+    "& .MuiSwitch-switchBase": {
+      color: "#d4af37",
+      "&.Mui-checked + .MuiSwitch-track": {
+        backgroundColor: "#d4af37",
+      },
+    },
+    "&.Mui-checked": {
+      backgroundColor: "#d4af37",
+    },
+
+    "& .MuiSwitch-track": {
+      opacity: 1,
+      backgroundColor: "#8796A5",
+      borderRadius: 20 / 2,
+    },
+  },
+  gridToggleLight: {
+    color: "#00afc9",
+    "& .MuiSwitch-switchBase": {
+      color: "#00afc9",
+      "&.Mui-checked + .MuiSwitch-track": {
+        backgroundColor: "#00afc9",
+      },
+    },
+    "&.Mui-checked": {
+      backgroundColor: "#00afc9",
+    },
+    "& .MuiSwitch-track": {
+      opacity: 1,
+      backgroundColor: "#146175",
+      borderRadius: 20 / 2,
+    },
+  },
 });

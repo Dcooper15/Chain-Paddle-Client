@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "styled-components";
 import {
   StyledNavLink,
   StyledNavbar,
@@ -9,9 +10,11 @@ import { Button } from "@material-ui/core";
 import { FaUserAstronaut, FaCloudSun } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { IoIosCloudyNight } from "react-icons/io";
-//import MainLogo from "./MainLogo";
+import MainLogo from "./MainLogo";
 
-const BasicNav = ({ lightDarkChange, theme }) => {
+const BasicNav = ({ lightDarkChange }) => {
+  const theme = useContext(ThemeContext);
+
   return (
     <>
       <StyledNavbar>
@@ -25,7 +28,7 @@ const BasicNav = ({ lightDarkChange, theme }) => {
         ></Button>
         <Button
           startIcon={
-            theme === "light" ? (
+            theme.name === "light" ? (
               <IoIosCloudyNight style={{ color: "#00afc9" }} />
             ) : (
               <FaCloudSun style={{ color: "#d4af37" }} />
@@ -37,16 +40,15 @@ const BasicNav = ({ lightDarkChange, theme }) => {
         <Button
           startIcon={
             <StyledNavLink to="/profile">
-              <FaUserAstronaut
-                style={{ color: theme === "light" ? "#00afc9" : "#d4af37" }}
-              />
+              <FaUserAstronaut />
             </StyledNavLink>
           }
           size="medium"
         ></Button>
         <AuthNav />
-        {/* <MainLogo /> */}
+        <MainLogo /> 
       </StyledNavbar>
+      
     </>
   );
 };

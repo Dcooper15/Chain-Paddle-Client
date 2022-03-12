@@ -3,6 +3,7 @@ import {
   SectorMenuHome,
   MenuRow,
   StyledLink,
+  SectorContainer,
   HomeMenuItemContainer,
   HomeMenuItemIconContainer,
   HomeMenuItemContainerDisabled,
@@ -22,7 +23,7 @@ import { TiSocialTwitter } from "react-icons/ti";
 
 const MainMenu = () => {
   return (
-    <>
+    <SectorContainer>
       <SectorMenuHome>
         <MenuRow>
           <StyledLink to="/sector">
@@ -88,7 +89,7 @@ const MainMenu = () => {
           </StyledLink>
         </MenuRow>
       </SectorMenuHome>
-    </>
+    </SectorContainer>
   );
 };
 

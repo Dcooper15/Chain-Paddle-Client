@@ -1,8 +1,19 @@
-import React from "react";
-import Logo from "../../media/ChainPaddle-B.png";
+import React, { useContext } from "react";
+import { ThemeContext } from "styled-components";
+import DarkNavLogo from "../../media/ChainPaddleDarkIcon.png";
+import LightNavLogo from "../../media/ChainPaddleLightIcon.png";
+import { NavLogoContainer } from "../Styles/styledElements";
 
 const MainLogo = () => {
-  return <img src={Logo} alt="Logo" />;
+  const theme = useContext(ThemeContext);
+  return (
+    <NavLogoContainer>
+      <img
+        src={theme.name === "dark" ? DarkNavLogo : LightNavLogo}
+        alt="Logo"
+      />
+    </NavLogoContainer>
+  );
 };
 
 export default MainLogo;

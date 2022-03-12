@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useRecoilState, 
-  //useRecoilValue 
+import {
+  useRecoilState,
+  //useRecoilValue
 } from "recoil";
 import {
   dataDisplayState,
@@ -15,6 +16,7 @@ import { Card, Button } from "@material-ui/core";
 import DataGridDisplay from "../DataGrid/DataGridDisplay";
 import MapCardHeader from "../DataPoints/MapCardHeader";
 import MapDataPoints from "../DataPoints/MapDataPoints";
+import GridToggle from "../Styles/MuiComponents/GridToggle";
 
 let symbolArray = [];
 
@@ -35,7 +37,6 @@ function SectorStocks() {
     setHandleTypeChange(false);
   };
 
-  console.log(showGridData);
   let sectorError = [];
   switch (sector) {
     case "tech":
@@ -94,7 +95,7 @@ function SectorStocks() {
   const capHeader = (header) => {
     return header.charAt(0).toUpperCase() + header.slice(1);
   };
-  console.log("tog grid", toggleGrid);
+
   const getButtonColor = theme.name === "dark" ? "#fff" : "#F8E4A5";
   const getCardColors =
     theme.name === "dark"
@@ -167,19 +168,7 @@ function SectorStocks() {
         <strong style={{ color: getButtonColor }}>Put</strong>
       </Button>
       <br></br>
-      <Button
-        variant="outlined"
-        className={
-          theme.name === "dark"
-            ? classes.dataDisplayButtonDark
-            : classes.dataDisplayButtonLight
-        }
-        type="submit"
-        size="small"
-        onClick={toggleGrid}
-      >
-        {showGridData ? "Display as Cards" : "Display as Grid"}
-      </Button>
+      <GridToggle showGridData={showGridData} _onClick={toggleGrid} />
 
       {!!dataArray.length ? (
         showGridData && !handleTypeChange ? (

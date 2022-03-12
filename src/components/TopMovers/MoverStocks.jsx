@@ -16,6 +16,7 @@ import { Card, Button } from "@material-ui/core";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 import MapCardHeader from "../DataPoints/MapCardHeader";
 import DataGridDisplay from "../DataGrid/DataGridDisplay";
+import GridToggle from "../Styles/MuiComponents/GridToggle";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
 let header = [];
@@ -244,19 +245,7 @@ function MoverStocks() {
         <strong style={{ color: getButtonColor }}>Put</strong>
       </Button>
       <br></br>
-      <Button
-        variant="outlined"
-        className={
-          theme.name === "dark"
-            ? classes.dataDisplayButtonDark
-            : classes.dataDisplayButtonLight
-        }
-        type="submit"
-        size="small"
-        onClick={toggleGrid}
-      >
-        {showGridData ? "Display as Cards" : "Display as Grid"}
-      </Button>
+      <GridToggle showGridData={showGridData} _onClick={toggleGrid} />
       {!!marketData.length ? (
         showGridData && !handleTypeChange ? (
           <DataGridDisplay

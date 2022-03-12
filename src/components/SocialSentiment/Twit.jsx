@@ -19,6 +19,7 @@ import {
 } from "@material-ui/core";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 import MapCardHeader from "../DataPoints/MapCardHeader";
+import GridToggle from "../Styles/MuiComponents/GridToggle";
 import {
   useRecoilState,
   //useRecoilValue
@@ -314,24 +315,13 @@ const Twit = () => {
           >
             <strong style={{ color: getButtonColor }}>Put</strong>
           </Button>
+          <br></br>
+          <GridToggle showGridData={showGridData} _onClick={toggleGrid} />
         </>
       ) : (
         ""
       )}
-      <br></br>
-      <Button
-        variant="outlined"
-        className={
-          theme.name === "dark"
-            ? classes.dataDisplayButtonDark
-            : classes.dataDisplayButtonLight
-        }
-        type="submit"
-        size="small"
-        onClick={toggleGrid}
-      >
-        {showGridData ? "Display as Cards" : "Display as Grid"}
-      </Button>
+
       {!!sentimentData.length
         ? sentimentData.map((stock) =>
             stock.map((option) =>

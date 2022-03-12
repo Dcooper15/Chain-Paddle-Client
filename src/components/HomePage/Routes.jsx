@@ -1,10 +1,5 @@
 import React from "react";
-
-import {
-  // Route,
-  Switch,
-  //useHistory
-} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import ProtectedRoute from "../auth/protected-route";
 import MainTopMovers from "../TopMovers/MainTopMovers";
 import MoverStocks from "../TopMovers/MoverStocks";
@@ -17,13 +12,18 @@ import Earnings from "../Earnings/Earnings";
 import MainResearch from "../Research/MainResearch";
 import Twit from "../SocialSentiment/Twit";
 import Profile from "../Profile/profile";
+import Intro from "./Intro";
+import MainMenu from "./MainMenu";
 
 const Routes = () => {
-  // let history = useHistory();
-
   return (
     <>
       <Switch>
+        <Route exact path="/">
+          <Intro />
+
+          <MainMenu />
+        </Route>
         <ProtectedRoute exact path="/sector" component={MainSectors} />
 
         <ProtectedRoute exact path="/topmovers" component={MainTopMovers} />
@@ -51,11 +51,7 @@ const Routes = () => {
           path="/social/twitterstocktwits"
           component={Twit}
         />
-        <ProtectedRoute
-          exact
-          path="/profile"
-          component={Profile}
-        />
+        <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>
     </>
   );

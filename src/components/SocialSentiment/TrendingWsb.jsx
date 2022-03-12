@@ -18,6 +18,7 @@ import {
   dataDisplayState,
   //toggleDataDisplayState,
 } from "../../recoil/atoms/globalState";
+import GridToggle from "../Styles/MuiComponents/GridToggle";
 import DataGridDisplay from "../DataGrid/DataGridDisplay";
 
 const monthNames = [
@@ -336,19 +337,7 @@ function TrendingWsb() {
         <strong style={{ color: getButtonColor }}>Put</strong>
       </Button>
       <br></br>
-      <Button
-        variant="outlined"
-        className={
-          theme.name === "dark"
-            ? classes.dataDisplayButtonDark
-            : classes.dataDisplayButtonLight
-        }
-        type="submit"
-        size="small"
-        onClick={toggleGrid}
-      >
-        {showGridData ? "Display as Cards" : "Display as Grid"}
-      </Button>
+      <GridToggle showGridData={showGridData} _onClick={toggleGrid} />
       {!!marketData.length ? (
         marketData.map((stock) =>
           stock.map((option) =>
