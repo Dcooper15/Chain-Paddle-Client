@@ -282,12 +282,17 @@ export const useStyles = makeStyles({
     borderRadius: 7,
   },
   signUpButtonDark: {
-    //background: "linear-gradient(45deg, #d4af37 30%, #EEBC1D 90%)",
     borderColor: "#d4af37",
-    //border: 2,
-    //borderRadius: 3,
-    //boxShadow: "0 3px 5px 2px rgba(212, 175, 55, .5)",
     color: "#d4af37",
+    margin: "auto",
+    justifyContent: "center",
+    fontSize: "22px",
+    textAlign: "center",
+    display: "grid",
+  },
+  signUpButtonLight: {
+    borderColor: "#146175",
+    color: "#00afc9",
     margin: "auto",
     justifyContent: "center",
     fontSize: "22px",
@@ -336,7 +341,7 @@ export const useStyles = makeStyles({
     "&.Mui-checked": {
       backgroundColor: "#d4af37",
     },
-
+    
     "& .MuiSwitch-track": {
       opacity: 1,
       backgroundColor: "#8796A5",
@@ -344,7 +349,7 @@ export const useStyles = makeStyles({
     },
   },
   gridToggleLight: {
-    color: "#00afc9",
+    color: "fff",
     "& .MuiSwitch-switchBase": {
       color: "#00afc9",
       "&.Mui-checked + .MuiSwitch-track": {

@@ -21,13 +21,15 @@ const OptionComments = ({
       : mapType === "call"
       ? callDescription
       : putDescription;
-  console.log("comment to query -", optionCommentsToQuery);
+
   const [commentsData, setCommentsData] = useState([]);
   console.log("comments state", commentsData);
-  console.log("mapType", mapType);
+
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_ROUTE}/comments/${optionCommentsToQuery}`)
+      .get(
+        `${process.env.REACT_APP_SERVER_ROUTE}/comments/${optionCommentsToQuery}`
+      )
       .then((response) => {
         console.log("res.data", response.data);
         setCommentsData([response.data.rows]);

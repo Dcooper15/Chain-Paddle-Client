@@ -210,7 +210,7 @@ export const HomeMenuItemContainer = styled.div`
   flex-direction: column;
   color: #ffdbd6;
   border-radius: 15px;
-  margin: 4% 2%;
+  margin: 4% 0;
   font-size: 30px;
   padding: 20px;
   flex-grow: 1;
@@ -223,6 +223,7 @@ export const HomeMenuItemContainer = styled.div`
     width: 130px;
     height: 65px;
     font-size: 22px;
+    margin: 4% 2%;
   }
 `;
 export const HomeMenuItemContainerDisabled = styled.div`
@@ -1173,16 +1174,40 @@ export const DataGridToggleContainer = styled.div`
 export const BackButtonContainer = styled.div`
   color: ${(props) => props.theme.accentColor};
   margin-left: 1%;
-  font-size: 22px;
+  font-size: 25px;
+
   @media (max-width: 800px) {
-    font-size: 17px;
+    font-size: 22px;
   }
 `;
 
 //logos
 
 export const NavLogoContainer = styled.div`
-padding-top: 1%;
-margin-left: auto;
-position: relative;
+  padding-top: 1%;
+  margin-left: auto;
+  margin-right: 1%;
+  position: relative;
+`;
+
+export const StyledSignUpLogo = styled.img`
+  @media (max-width: 600px) {
+    width: 350px;
+  }
+`;
+export const SignupLogoContainer = styled.div`
+  display: flex;
+  max-width: 800px;
+  margin-top: 12%;
+  margin-bottom: 10%;
+  justify-content: center;
+`;
+
+//auth
+export const AuthNavContainer = styled.div`
+  display: flex;
+  width: 95%;
+  margin-left: 2%;
+  margin-right: 2%;
+  position: relative;
 `;

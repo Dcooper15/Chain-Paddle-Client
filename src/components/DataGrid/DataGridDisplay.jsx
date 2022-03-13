@@ -107,7 +107,7 @@ const DataGridDisplay = ({ option, mapType }) => {
 
   return (
     <>
-      <DataGridContainer style={{ height: 450, color: "gold" }}>
+      <DataGridContainer style={{ height: 450 }}>
         <DataGrid
           rows={mapType === "call" ? callRows : putRows}
           columns={columns}
@@ -131,6 +131,9 @@ const DataGridDisplay = ({ option, mapType }) => {
                     color: "#d4af37",
                   },
                   "& .MuiDataGrid-menuIconButton": {
+                    color: "#d4af37",
+                  },
+                  "& .MuiTablePagination": {
                     color: "#d4af37",
                   },
                 }

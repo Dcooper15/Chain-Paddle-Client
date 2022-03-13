@@ -1,11 +1,14 @@
 import React from "react";
-import { StyledNavbar, LogoPlaceholder } from "../Styles/styledElements";
+import { StyledNavbar } from "../Styles/styledElements";
+import MainLogo from "../HomePage/MainLogo";
+import LightDarkToggle from "../HomePage/LightDarkToggle";
 
-const SignupNav = () => {
+const SignupNav = ({ lightDarkChange }) => {
   return (
     <>
       <StyledNavbar>
-        <LogoPlaceholder>Chain Paddle</LogoPlaceholder>
+        <LightDarkToggle lightDarkChange={lightDarkChange} />
+        <MainLogo />
       </StyledNavbar>
     </>
   );

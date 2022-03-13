@@ -1,20 +1,13 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "styled-components";
-import {
-  StyledNavLink,
-  StyledNavbar,
-  //LogoPlaceholder,
-} from "../Styles/styledElements";
-import AuthNav from "../auth/auth-nav";
+import React from "react";
+import { StyledNavLink, StyledNavbar } from "../Styles/styledElements";
+import LightDarkToggle from "./LightDarkToggle";
 import { Button } from "@material-ui/core";
-import { FaUserAstronaut, FaCloudSun } from "react-icons/fa";
+import { FaUserAstronaut } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
-import { IoIosCloudyNight } from "react-icons/io";
+
 import MainLogo from "./MainLogo";
 
 const BasicNav = ({ lightDarkChange }) => {
-  const theme = useContext(ThemeContext);
-
   return (
     <>
       <StyledNavbar>
@@ -26,17 +19,7 @@ const BasicNav = ({ lightDarkChange }) => {
           }
           size="medium"
         ></Button>
-        <Button
-          startIcon={
-            theme.name === "light" ? (
-              <IoIosCloudyNight style={{ color: "#00afc9" }} />
-            ) : (
-              <FaCloudSun style={{ color: "#d4af37" }} />
-            )
-          }
-          onClick={lightDarkChange}
-          size="medium"
-        ></Button>{" "}
+        <LightDarkToggle lightDarkChange={lightDarkChange} />
         <Button
           startIcon={
             <StyledNavLink to="/profile">
@@ -45,10 +28,9 @@ const BasicNav = ({ lightDarkChange }) => {
           }
           size="medium"
         ></Button>
-        <AuthNav />
-        <MainLogo /> 
+
+        <MainLogo />
       </StyledNavbar>
-      
     </>
   );
 };

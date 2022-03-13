@@ -12,7 +12,7 @@ import Earnings from "../Earnings/Earnings";
 import MainResearch from "../Research/MainResearch";
 import Twit from "../SocialSentiment/Twit";
 import Profile from "../Profile/profile";
-import Intro from "./Intro";
+
 import MainMenu from "./MainMenu";
 
 const Routes = () => {
@@ -20,7 +20,7 @@ const Routes = () => {
     <>
       <Switch>
         <Route exact path="/">
-          <Intro />
+          
 
           <MainMenu />
         </Route>

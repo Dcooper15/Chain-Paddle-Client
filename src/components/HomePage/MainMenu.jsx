@@ -15,6 +15,7 @@ import {
   AiOutlineFileSearch,
   AiOutlineScan,
 } from "react-icons/ai";
+import SignupLogo from "../Signup/SignupLogo";
 import { GiCommercialAirplane } from "react-icons/gi";
 import { GiElectric } from "react-icons/gi";
 import { FiTrendingUp } from "react-icons/fi";
@@ -23,6 +24,8 @@ import { TiSocialTwitter } from "react-icons/ti";
 
 const MainMenu = () => {
   return (
+    <>
+    <SignupLogo />
     <SectorContainer>
       <SectorMenuHome>
         <MenuRow>
@@ -90,6 +93,7 @@ const MainMenu = () => {
         </MenuRow>
       </SectorMenuHome>
     </SectorContainer>
+    </>
   );
 };
 
