@@ -77,6 +77,14 @@ export const SectorContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
 `;
+export const HomePageCommentsContainer = styled.div`
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2%;
+`;
 export const SectorMenu = styled.div`
   justify-content: center;
   text-align: center;
@@ -205,14 +213,16 @@ export const SectorMenuHome = styled.div`
 
 export const HomeMenuItemContainer = styled.div`
   flex: 1;
-  align-items: flex-start;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  text-align: center;
   flex-direction: column;
   color: #ffdbd6;
   border-radius: 15px;
-  margin: 4% 0;
+  margin: 4% 0%;
   font-size: 30px;
-  padding: 20px;
+  padding: 7px 24px;
   flex-grow: 1;
   flex-basis: 120px;
   width: 200px;
@@ -220,22 +230,30 @@ export const HomeMenuItemContainer = styled.div`
   background: ${(props) => props.theme.menuItemBackground};
   box-shadow: ${(props) => props.theme.boxShadowColor};
   @media (max-width: 600px) {
+    width: 150px;
+    height: 65px;
+    font-size: 26px;
+    margin: 4% 0%;
+    padding: 7px 22px;
+  }
+  @media (max-width: 450px) {
     width: 130px;
     height: 65px;
     font-size: 22px;
-    margin: 4% 2%;
+    padding: 7px 15px;
   }
 `;
 export const HomeMenuItemContainerDisabled = styled.div`
   flex: 1;
-  align-items: flex-start;
+  display: flex;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
   color: ${(props) => props.theme.disabledColor};
   border-radius: 15px;
-  margin: 4% 2%;
+  margin: 4% 0%;
   font-size: 30px;
-  padding: 20px;
+  padding: 7px 20px;
   flex-grow: 1;
   flex-basis: 120px;
   width: 200px;
@@ -243,9 +261,16 @@ export const HomeMenuItemContainerDisabled = styled.div`
   background: ${(props) => props.theme.menuItemBackground};
   box-shadow: ${(props) => props.theme.boxShadowColor};
   @media (max-width: 600px) {
+    width: 150px;
+    height: 65px;
+    font-size: 26px;
+    padding: 7px 22px;
+  }
+  @media (max-width: 450px) {
     width: 130px;
     height: 65px;
     font-size: 22px;
+    padding: 7px 15px;
   }
 `;
 
@@ -1127,6 +1152,15 @@ export const StyledDiscussionHeader = styled.h3`
     font-size: 18px;
   }
 `;
+export const HomePageDiscussionHeaderContainer = styled.h3`
+  color: ${(props) => props.theme.accentColor};
+  font-size: 20px;
+  margin-left: 2%;
+  margin-right: 2%;
+  @media (max-width: 800px) {
+    font-size: 18px;
+  }
+`;
 
 export const CommentsHeaderContainer = styled.div`
   color: ${(props) => props.theme.accentColor};
@@ -1148,6 +1182,7 @@ export const StyledCommentsDate = styled.i`
 
 export const CreateCommentContainer = styled.div`
   margin-right: 2%;
+  margin-left: 2%;
 `;
 
 export const PostLengthContainer = styled.i`
@@ -1197,10 +1232,13 @@ export const StyledSignUpLogo = styled.img`
 `;
 export const SignupLogoContainer = styled.div`
   display: flex;
+  width: 100%;
   max-width: 800px;
   margin-top: 12%;
   margin-bottom: 10%;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 //auth

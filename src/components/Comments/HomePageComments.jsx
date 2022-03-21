@@ -1,68 +1,53 @@
 import React, { useEffect, useState } from "react";
 import {
   CommentsContainer,
-  StyledDiscussionHeader,
+  HomePageDiscussionHeaderContainer,
+  HomePageCommentsContainer,
 } from "../Styles/styledElements";
 import CreateComment from "./CreateComment";
 import axios from "axios";
 import CommentsCard from "./CommentsCard";
-import Name from "../DataPoints/Name";
 
-const OptionComments = ({
-  symbol,
-  fullChainDescription,
-  callDescription,
-  mapType,
-  putDescription,
-}) => {
-  const optionCommentsToQuery =
-    mapType === "full"
-      ? fullChainDescription
-      : mapType === "call"
-      ? callDescription
-      : putDescription;
-
+const HomePageComments = () => {
   const [commentsData, setCommentsData] = useState([]);
   const [isNewComment, setIsNewComment] = useState(false);
 
   const handleNewComment = () => {
     setIsNewComment(!isNewComment);
   };
- 
 
   useEffect(() => {
     axios
-      .get(
-        `${process.env.REACT_APP_SERVER_ROUTE}/comments/option/${optionCommentsToQuery}`
-      )
+      .get(`${process.env.REACT_APP_SERVER_ROUTE}/comments/all`)
       .then((response) => {
-        console.log("res.data", response.data);
+        console.log("res.data ALL", response.data);
         setCommentsData([response.data.rows]);
       });
-  }, [optionCommentsToQuery, isNewComment]);
+  }, [isNewComment]);
 
   return (
-    <>
-      <StyledDiscussionHeader>
-        Discussion - <Name namesRender={optionCommentsToQuery} />
-      </StyledDiscussionHeader>
+    <HomePageCommentsContainer>
+      <HomePageDiscussionHeaderContainer>
+        Today's Discussion Thread
+      </HomePageDiscussionHeaderContainer>
       <CreateComment
-        optionDescription={optionCommentsToQuery}
-        symbol={symbol}
-        mapType={mapType}
+        optionDescription={"General"}
+        symbol={"General"}
+        mapType={"General"}
+        isHomePage={true}
         handleQueryingNewComments={handleNewComment}
       />
       <CommentsContainer>
         {!!commentsData.length
           ? commentsData[0].length === 0
-            ? "No comments have been added for this option"
+            ? "No comments have been added today"
             : commentsData.map((data) =>
                 data.map((comment) => <CommentsCard comment={comment} />)
               )
           : ""}
       </CommentsContainer>
-    </>
+    </HomePageCommentsContainer>
   );
 };
 
-export default OptionComments;
+export default HomePageComments;

@@ -1,5 +1,5 @@
 import React, {
-  //useEffect,
+  // useEffect,
   useState,
   useContext,
 } from "react";
@@ -12,17 +12,25 @@ import {
 import { useStyles } from "../Styles/muiStyles";
 import { Button, TextField } from "@material-ui/core";
 import { AiOutlinePlus } from "react-icons/ai";
+// import { FaSpinner } from "react-icons/fa";
 import axios from "axios";
 
-const CreateComment = ({ optionDescription, symbol, mapType }) => {
+const CreateComment = ({
+  optionDescription,
+  symbol,
+  mapType,
+  handleQueryingNewComments,
+}) => {
   const classes = useStyles();
   const theme = useContext(ThemeContext);
   const { user } = useAuth0();
   const loggedInUser = user;
   const [post, setPost] = useState("");
   const [submittedPost, setSubmittedPost] = useState("");
+  // const [showSpinner, setShowSpinner] = useState(false);
+
   const postLength = post.length;
-  console.log("post state", post);
+
   console.log("submited text", submittedPost);
   const comment = {
     symbol: symbol,
@@ -39,6 +47,9 @@ const CreateComment = ({ optionDescription, symbol, mapType }) => {
   const handleTextChange = (e) => {
     setPost(e.target.value);
   };
+  // const handleShowSpinner = (value) => {
+  //   setShowSpinner(value);
+  // };
 
   const handleSubmitComment = (e) => {
     e.preventDefault();
@@ -46,50 +57,51 @@ const CreateComment = ({ optionDescription, symbol, mapType }) => {
       //check null/length
     } else {
       setSubmittedPost(post);
+
       axios
         .post(`${process.env.REACT_APP_SERVER_ROUTE}/comments/create`, comment)
-        .then(console.log("Comment Created"))
+        // .then(handleShowSpinner(true))
         .then(setSubmittedPost(""))
-        .then(setPost(""));
+        .then(setPost(""))
+
+        .then(setTimeout(handleQueryingNewComments, 3000));
+      // .then(setShowSpinner(false));
     }
   };
+  // useEffect(() => handleShowSpinner(true), [showSpinner]);
   const themeColor = theme.name === "dark" ? "#d4af37" : "#146175";
-
-  console.log("post length", postLength);
 
   return (
     <CreateCommentContainer>
-      <>
-        {" "}
-        <TextField
-          onChange={handleTextChange}
-          value={post}
-          placeholder="Add a comment"
-          error={postLength > 300}
-          helperText={postLength > 300 ? "Comment is over 300 characters" : ""}
-          multiline
-          fullWidth
-          InputProps={{
-            style: {
-              color: themeColor,
-              fontStyle: post.length ? "normal" : "oblique",
-            },
-          }}
-        />{" "}
-        <Button
-          style={{ color: themeColor }}
-          className={
-            theme.name === "dark"
-              ? classes.moreDataButtonDark
-              : classes.moreDataButtonLight
-          }
-          onClick={handleSubmitComment}
-        >
-          <AiOutlinePlus />
-        </Button>
-        <PostLengthContainer>{postLength} / 300</PostLengthContainer>
-        <br></br>
-      </>
+      {" "}
+      <TextField
+        onChange={handleTextChange}
+        value={post}
+        placeholder="Add a comment"
+        error={postLength > 300}
+        helperText={postLength > 300 ? "Comment is over 300 characters" : ""}
+        multiline
+        fullWidth
+        InputProps={{
+          style: {
+            color: themeColor,
+            fontStyle: post.length ? "normal" : "oblique",
+          },
+        }}
+      />{" "}
+      <Button
+        style={{ color: themeColor }}
+        className={
+          theme.name === "dark"
+            ? classes.moreDataButtonDark
+            : classes.moreDataButtonLight
+        }
+        onClick={handleSubmitComment}
+      >
+        <AiOutlinePlus />
+      </Button>
+      <PostLengthContainer>{postLength} / 300</PostLengthContainer>
+      <br></br>
     </CreateCommentContainer>
   );
 };
