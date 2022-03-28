@@ -78,6 +78,18 @@ export const SectorContainer = styled.div`
   margin-right: auto;
 `;
 export const HomePageCommentsContainer = styled.div`
+  visibility: ${(props) => (props.displayWatchlist ? "hidden" : "visible")};
+  height: ${(props) => (props.displayWatchlist ? "0" : "")};
+  justify-content: center;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2%;
+`;
+export const HomePageOptionsWatchlistContainer = styled.div`
+  visibility: ${(props) => (props.displayWatchlist ? "visibile" : "hidden")};
+  height: ${(props) => (props.displayWatchlist ? "" : "0")};
   justify-content: center;
   width: 100%;
   max-width: 800px;
@@ -506,6 +518,12 @@ export const StyledMoreDataButton = styled.strong`
   box-shadow: 0 3px 5px 2px rgba(212, 175, 55, 0.5);
   margin-top: 1%;
 `;
+export const AddToWatchListContainer = styled.strong`
+  flex: 0;
+  color: ${(props) => props.theme.accentColor};
+  align-items: bottom;
+  margin-top: 1%;
+`;
 export const StyledInTheMoney = styled.strong`
   color: ${(props) => props.theme.headerColor};
   flex: 0;
@@ -900,6 +918,13 @@ export const HomeIconContainerDisabled = styled.div`
   }
 `;
 
+export const ButtonGroupContainer = styled.div`
+  display: flex;
+  width: 100%;
+  margin: auto;
+  justify-content: center;
+`;
+
 //**More Data**
 
 export const MoreDataHeaderContainer = styled.div`
@@ -1142,7 +1167,7 @@ export const ThemeColorContainer = styled.div`
 //comments
 
 export const CommentsContainer = styled.div`
-  max-height: 400px;
+  max-height:  ${(props) => props.isHomePage ? '600px' : '400px'};
   overflow-y: scroll;
 `;
 export const StyledDiscussionHeader = styled.h3`

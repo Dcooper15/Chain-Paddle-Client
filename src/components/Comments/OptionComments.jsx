@@ -28,7 +28,6 @@ const OptionComments = ({
   const handleNewComment = () => {
     setIsNewComment(!isNewComment);
   };
- 
 
   useEffect(() => {
     axios
@@ -36,7 +35,6 @@ const OptionComments = ({
         `${process.env.REACT_APP_SERVER_ROUTE}/comments/option/${optionCommentsToQuery}`
       )
       .then((response) => {
-        console.log("res.data", response.data);
         setCommentsData([response.data.rows]);
       });
   }, [optionCommentsToQuery, isNewComment]);

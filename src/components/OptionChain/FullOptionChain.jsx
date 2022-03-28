@@ -166,6 +166,7 @@ function FullOptionChain() {
         });
     } catch (err) {}
   }, [symbol, strikeCount]);
+
   if (error === "error") {
     return (
       <>

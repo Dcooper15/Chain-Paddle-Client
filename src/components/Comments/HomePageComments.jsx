@@ -8,7 +8,7 @@ import CreateComment from "./CreateComment";
 import axios from "axios";
 import CommentsCard from "./CommentsCard";
 
-const HomePageComments = () => {
+const HomePageComments = ({ displayWatchlist }) => {
   const [commentsData, setCommentsData] = useState([]);
   const [isNewComment, setIsNewComment] = useState(false);
 
@@ -20,13 +20,12 @@ const HomePageComments = () => {
     axios
       .get(`${process.env.REACT_APP_SERVER_ROUTE}/comments/all`)
       .then((response) => {
-        console.log("res.data ALL", response.data);
         setCommentsData([response.data.rows]);
       });
   }, [isNewComment]);
 
   return (
-    <HomePageCommentsContainer>
+    <HomePageCommentsContainer displayWatchlist={displayWatchlist}>
       <HomePageDiscussionHeaderContainer>
         Today's Discussion Thread
       </HomePageDiscussionHeaderContainer>
@@ -37,7 +36,7 @@ const HomePageComments = () => {
         isHomePage={true}
         handleQueryingNewComments={handleNewComment}
       />
-      <CommentsContainer>
+      <CommentsContainer isHomePage={true}>
         {!!commentsData.length
           ? commentsData[0].length === 0
             ? "No comments have been added today"

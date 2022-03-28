@@ -13,11 +13,11 @@ import { FaRegComment } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { callIndexUnfixed, putIndexUnfixed } from "../Globals/globalFunctions";
 import OptionComments from "../Comments/OptionComments";
+import AddToWatchlist from "../Watchlist/AddToWatchlist";
 
 const date = new Date();
 const MapDataPoints = ({ option, mapType }) => {
   const [showComments, setShowComments] = useState();
-  
 
   const buttonHandlerShowComments = () => {
     if (showComments === true) {
@@ -29,6 +29,15 @@ const MapDataPoints = ({ option, mapType }) => {
   const callDescription = callIndexUnfixed(option, "description");
   const putDescription = putIndexUnfixed(option, "description");
 
+  const watchlistContractType = mapType.toUpperCase();
+
+  const watchlistStrikeCall = callIndexUnfixed(option, "strikePrice");
+  const watchlistStrikePut = putIndexUnfixed(option, "strikePrice");
+  const callDate = Object.keys(option.callExpDateMap)[0];
+  const putDate = Object.keys(option.putExpDateMap)[0];
+  const watchlistToFromDateCall = callDate.slice(0, callDate.indexOf(":"));
+  const watchlistToFromDatePut = putDate.slice(0, putDate.indexOf(":"));
+console.log(watchlistStrikeCall);
   return (
     <>
       <br></br>
@@ -50,6 +59,14 @@ const MapDataPoints = ({ option, mapType }) => {
           )}
         </ThemeColorContainer>
       </Button>
+      <AddToWatchlist
+        contractType={watchlistContractType}
+        symbol={option.symbol}
+        strike={mapType === "call" ? watchlistStrikeCall : watchlistStrikePut}
+        toFromDate={
+          mapType === "call" ? watchlistToFromDateCall : watchlistToFromDatePut
+        }
+      />
       <br></br>
       {mapType === "call" ? (
         <HundredShares option={option} />
