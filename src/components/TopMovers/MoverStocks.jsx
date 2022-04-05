@@ -153,7 +153,7 @@ function MoverStocks() {
         });
     }
   }, [market, direction]);
-console.log("md", marketData);
+
   return (
     <>
       {market === "mostactive" ? (

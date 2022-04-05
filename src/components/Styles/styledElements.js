@@ -1167,7 +1167,7 @@ export const ThemeColorContainer = styled.div`
 //comments
 
 export const CommentsContainer = styled.div`
-  max-height:  ${(props) => props.isHomePage ? '600px' : '400px'};
+  max-height: ${(props) => (props.isHomePage ? "600px" : "400px")};
   overflow-y: scroll;
 `;
 export const StyledDiscussionHeader = styled.h3`
@@ -1264,6 +1264,63 @@ export const SignupLogoContainer = styled.div`
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+`;
+
+export const AppDetailsContainer = styled.div`
+  color: ${(props) => props.theme.accentColor};
+  margin-top: 8%;
+`;
+export const StyledSignUpImage = styled.img`
+  @media (max-width: 400px) {
+    width: 350px;
+  }
+  @media (max-width: 450px) {
+    width: 390px;
+  }
+  @media (max-width: 500px) {
+    width: 430px;
+  }
+`;
+export const SignUpTextHeader = styled.h4`
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+`;
+export const SignUpTextParagraph = styled.h5`
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  @media (max-width: 610px) {
+    margin-left: 2%;
+  }
+`;
+export const SignupImageContainer = styled.div`
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 0;
+  margin-bottom: 1%;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const GeneralCenteredItalic = styled.i`
+  display: flex;
+  color: ${(props) => props.theme.accentColor};
+  width: 100%;
+  padding-top: 1%;
+  font-size: 18px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  @media (max-width: 550px) {
+    font-size: 13px;
+  }
 `;
 
 //auth

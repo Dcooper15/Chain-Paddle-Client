@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { AddToWatchListContainer } from "../Styles/styledElements";
@@ -9,6 +9,7 @@ import axios from "axios";
 
 const AddToWatchlist = ({ contractType, symbol, strike, toFromDate }) => {
   //const classes = useStyles();
+  const [optionAdded, setOptionAdded] = useState(false);
 
   const { user } = useAuth0();
   const loggedInUser = user;
@@ -23,6 +24,7 @@ const AddToWatchlist = ({ contractType, symbol, strike, toFromDate }) => {
 
   const handleSubmitAddToWatchlist = (e) => {
     e.preventDefault();
+    setOptionAdded(true);
 
     axios.post(
       `${process.env.REACT_APP_SERVER_ROUTE}/watchlist/create`,
@@ -32,7 +34,14 @@ const AddToWatchlist = ({ contractType, symbol, strike, toFromDate }) => {
 
   return (
     <AddToWatchListContainer>
-      <BsPlusCircle onClick={handleSubmitAddToWatchlist} />
+      {optionAdded === true ? (
+        "Added to watchlist"
+      ) : (
+        <BsPlusCircle
+          onClick={handleSubmitAddToWatchlist}
+          style={{ cursor: "pointer" }}
+        />
+      )}
     </AddToWatchListContainer>
   );
 };

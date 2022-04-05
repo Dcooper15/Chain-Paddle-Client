@@ -37,7 +37,7 @@ const MapDataPoints = ({ option, mapType }) => {
   const putDate = Object.keys(option.putExpDateMap)[0];
   const watchlistToFromDateCall = callDate.slice(0, callDate.indexOf(":"));
   const watchlistToFromDatePut = putDate.slice(0, putDate.indexOf(":"));
-console.log(watchlistStrikeCall);
+
   return (
     <>
       <br></br>
