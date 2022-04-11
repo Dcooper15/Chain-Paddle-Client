@@ -3,10 +3,7 @@ import {
   useRecoilState,
   //useRecoilValue
 } from "recoil";
-import {
-  dataDisplayState,
-  //toggleDataDisplayState,
-} from "../../recoil/atoms/globalState";
+import { dataDisplayState } from "../../recoil/atoms/globalState";
 import { ThemeContext } from "styled-components";
 import { SectorHeader } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
@@ -26,6 +23,7 @@ function SectorStocks() {
   const [dataArray, setDataArray] = useState([]);
   const [handleTypeChange, setHandleTypeChange] = useState(false);
   const [showGridData, setShowGridData] = useRecoilState(dataDisplayState);
+
   const toggleGrid = () => setShowGridData(!showGridData);
 
   const { sector } = useParams();
