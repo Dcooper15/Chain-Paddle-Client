@@ -9,6 +9,12 @@ export const dataDisplayState = atom({
   default: false,
 });
 
+export const addedWatchlistOptionsState = atom({
+  key: 'addedWatchlistOptionsState',
+  default: null,
+  dangerouslyAllowMutability: true
+});
+
 // export const toggleDataDisplayState = selector({
 //   key: "showGridToggle",
 //   set: ({ get, set }) => {

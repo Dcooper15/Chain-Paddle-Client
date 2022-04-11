@@ -37,6 +37,8 @@ const MapDataPoints = ({ option, mapType }) => {
   const putDate = Object.keys(option.putExpDateMap)[0];
   const watchlistToFromDateCall = callDate.slice(0, callDate.indexOf(":"));
   const watchlistToFromDatePut = putDate.slice(0, putDate.indexOf(":"));
+  const watchlistDescriptionCall = callIndexUnfixed(option, "description");
+  const watchlistDescriptionPut = putIndexUnfixed(option, "description");
 
   return (
     <>
@@ -65,6 +67,9 @@ const MapDataPoints = ({ option, mapType }) => {
         strike={mapType === "call" ? watchlistStrikeCall : watchlistStrikePut}
         toFromDate={
           mapType === "call" ? watchlistToFromDateCall : watchlistToFromDatePut
+        }
+        optionDescription={
+          mapType === "call" ? watchlistDescriptionCall : watchlistDescriptionPut
         }
       />
       <br></br>
