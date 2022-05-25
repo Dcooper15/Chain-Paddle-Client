@@ -30,12 +30,12 @@ const InsiderTradesCard = ({
     theme.name === "dark"
       ? {
           backgroundColor: "#38372b",
-
+          marginBottom: '6%',
           color: "#ffebcd",
         }
       : {
           backgroundColor: "#f5f0f0",
-
+          marginBottom: '6%',
           color: "#002933",
         };
 

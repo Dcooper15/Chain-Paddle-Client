@@ -8,7 +8,6 @@ import {
 } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
 import axios from "axios";
-
 import {
   Card,
   Button,

@@ -1127,6 +1127,27 @@ export const StyledChainError = styled.i`
   padding-top: 5%;
 `;
 
+export const SummaryDataContainer = styled.div`
+  color: ${(props) => props.theme.headerColor};
+  width: 100%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 1%;
+  align-items: center;
+`;
+export const SummaryDataHeader = styled.strong`
+  font-weight: bold;
+`;
+
+export const SummaryDataSubContainer = styled.div`
+  display: inline-flex;
+  // flex: 1;
+  padding: 2%;
+  flex-wrap: wrap;
+  // margin-top: 3%;
+  justify-content: center;
+`;
+
 //Twitter&Stocktwits
 
 export const TwitterStwitsFilterContainer = styled.div`
