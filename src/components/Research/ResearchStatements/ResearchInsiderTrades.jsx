@@ -10,14 +10,21 @@ import { Button } from "@material-ui/core";
 import axios from "axios";
 //import { uuid } from "uuidv4";
 import { StyledResearchIncStateYears } from "../../Styles/styledElements";
+import InsiderSentiment from "./InsiderSentiment";
 import InsiderTradesCard from "./InsiderTradesCard";
 import { useStyles } from "../../Styles/muiStyles";
 import { FixedSizeList } from "react-window";
 
 //const addCommas = /\B(?=(\d{3})+(?!\d))/g;
 
-const InsiderTrading = ({ submittedText, dataSelection,
-isEmptyInsiderTrades }) => {
+//const currentYear = new Date().getFullYear().toString();
+//const previousYear = (currentYear - 1).toString();
+
+const InsiderTrading = ({
+  submittedText,
+  dataSelection,
+  isEmptyInsiderTrades,
+}) => {
   const classes = useStyles();
   const theme = useContext(ThemeContext);
   const isMounted = useRef(false);
@@ -25,11 +32,13 @@ isEmptyInsiderTrades }) => {
   const [insiderYears, setInsiderYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState([]);
 
+  const screenWidth = window.screen.width;
+
   useEffect(() => {
     if (isMounted.current) {
       axios
         .get(
-          `https://${process.env.REACT_APP_HUB_URL}/api/v4/insider-trading?symbol=${submittedText}&limit=250&apikey=${process.env.REACT_APP_FM_CLIENT_ID}`
+          `https://${process.env.REACT_APP_HUB_URL}/api/v4/insider-trading?symbol=${submittedText}&limit=1000&apikey=${process.env.REACT_APP_FM_CLIENT_ID}`
         )
         .then((response) => {
           if (!response.data.length) {
@@ -37,6 +46,7 @@ isEmptyInsiderTrades }) => {
           } else {
             isEmptyInsiderTrades(false);
           }
+
           const returnYears = response.data.map((years) =>
             years.transactionDate.slice(0, 4)
           );
@@ -90,9 +100,16 @@ isEmptyInsiderTrades }) => {
     [insiderData, selectedYear]
   );
 
+  console.log("selected year", selectedYear);
+
   try {
     return (
       <>
+        {insiderData.length && dataSelection === "insider trades" ? (
+          <InsiderSentiment insiderData={insiderData} />
+        ) : (
+          ""
+        )}
         {!!insiderYears.length
           ? insiderYears.map((year) => (
               <StyledResearchIncStateYears dataSelection={dataSelection}>
@@ -117,13 +134,14 @@ isEmptyInsiderTrades }) => {
               </StyledResearchIncStateYears>
             ))
           : ""}
+
         {!!insiderData.length &&
         dataSelection === "insider trades" &&
         selectedYear.length ? (
           <FixedSizeList
-            height={500}
+            height={1000}
             width={"100%"}
-            itemSize={290}
+            itemSize={screenWidth >= 800 ? 390 : screenWidth >= 500 ? 350 : 300}
             itemCount={insiderData.length}
           >
             {Row}

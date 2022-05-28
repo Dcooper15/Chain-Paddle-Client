@@ -1127,6 +1127,27 @@ export const StyledChainError = styled.i`
   padding-top: 5%;
 `;
 
+export const SummaryDataContainer = styled.div`
+  color: ${(props) => props.theme.headerColor};
+  width: 100%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 1%;
+  align-items: center;
+`;
+export const SummaryDataHeader = styled.strong`
+  font-weight: bold;
+`;
+
+export const SummaryDataSubContainer = styled.div`
+  display: inline-flex;
+  // flex: 1;
+  padding: 2%;
+  flex-wrap: wrap;
+  // margin-top: 3%;
+  justify-content: center;
+`;
+
 //Twitter&Stocktwits
 
 export const TwitterStwitsFilterContainer = styled.div`
@@ -1330,4 +1351,50 @@ export const AuthNavContainer = styled.div`
   margin-left: 2%;
   margin-right: 2%;
   position: relative;
+`;
+
+//kpis
+export const KpiContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 30%;
+  margin: 0.75rem 0;
+  //border: 1px solid #ebedef;
+  border-radius: 10px;
+  text-align: center;
+`;
+
+export const KpiRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40%;
+  width: 100%;
+  //border: 1px solid #ebedef;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+`;
+
+export const StyledKpiItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 1%;
+  margin: 1% 3%;
+  //border: 1px solid #ebedef;
+  color: ${(props) => props.theme.accentColor};
+  
+ 
+`;
+export const StyledKpiValue = styled.strong`
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+`;
+export const StyledKpiDescription = styled.p`
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
 `;

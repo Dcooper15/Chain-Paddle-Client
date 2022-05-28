@@ -191,6 +191,21 @@ export const useStyles = makeStyles({
     },
   },
 
+  dropDownSelect: {
+    width: "100%",
+    // paddingTop: "0px",
+    "& .MuiSvgIcon-root": {
+      color: "#d4af37",
+    },
+  },
+  dropDownSelectInactive: {
+    width: "180px",
+    // paddingTop: "0px",
+    "& .MuiSvgIcon-root": {
+      color: "#d4af37",
+    },
+  },
+
   //WSB Buttons
   wsbButtonDark: {
     background: "linear-gradient(45deg, #EEBC1D 10%, #474747 95%)",
@@ -341,7 +356,7 @@ export const useStyles = makeStyles({
     "&.Mui-checked": {
       backgroundColor: "#d4af37",
     },
-    
+
     "& .MuiSwitch-track": {
       opacity: 1,
       backgroundColor: "#8796A5",
