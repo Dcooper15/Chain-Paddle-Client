@@ -17,8 +17,8 @@ import { FixedSizeList } from "react-window";
 
 //const addCommas = /\B(?=(\d{3})+(?!\d))/g;
 
-const currentYear = new Date().getFullYear().toString();
-const previousYear = (currentYear - 1).toString();
+//const currentYear = new Date().getFullYear().toString();
+//const previousYear = (currentYear - 1).toString();
 
 const InsiderTrading = ({
   submittedText,
@@ -38,7 +38,7 @@ const InsiderTrading = ({
     if (isMounted.current) {
       axios
         .get(
-          `https://${process.env.REACT_APP_HUB_URL}/api/v4/insider-trading?symbol=${submittedText}&limit=250&apikey=${process.env.REACT_APP_FM_CLIENT_ID}`
+          `https://${process.env.REACT_APP_HUB_URL}/api/v4/insider-trading?symbol=${submittedText}&limit=1000&apikey=${process.env.REACT_APP_FM_CLIENT_ID}`
         )
         .then((response) => {
           if (!response.data.length) {
@@ -47,15 +47,6 @@ const InsiderTrading = ({
             isEmptyInsiderTrades(false);
           }
 
-          // const acquisitionOccurences = response.data.reduce(
-          //   (acc, cur) => (cur.acquistionOrDisposition === "A" ? ++acc : acc),
-          //   0
-          // );
-          // const dispositionOccurences = response.data.reduce(
-          //   (acc, cur) => (cur.acquistionOrDisposition === "D" ? ++acc : acc),
-          //   0
-          // );
-
           const returnYears = response.data.map((years) =>
             years.transactionDate.slice(0, 4)
           );
@@ -63,8 +54,6 @@ const InsiderTrading = ({
           setInsiderYears(uniqueYears);
           setInsiderData(response.data);
           setSelectedYear([]);
-          // setTotalAcquisitions(acquisitionOccurences);
-          // setTotalDispositions(dispositionOccurences);
         });
     } else {
       isMounted.current = true;
