@@ -14,6 +14,7 @@ import DataGridDisplay from "../DataGrid/DataGridDisplay";
 import MapCardHeader from "../DataPoints/MapCardHeader";
 import MapDataPoints from "../DataPoints/MapDataPoints";
 import GridToggle from "../Styles/MuiComponents/GridToggle";
+import LoadingSpinner from "../Styles/Animations/LoadingSpinner";
 
 let symbolArray = [];
 
@@ -205,7 +206,7 @@ function SectorStocks() {
               )
             )
           )
-        : " "}
+        : <LoadingSpinner />}
       {!!dataArray.length ? (
         showGridData && handleTypeChange ? (
           <DataGridDisplay
