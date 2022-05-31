@@ -29,6 +29,7 @@ import {
 } from "../../recoil/atoms/globalState";
 import DataGridDisplay from "../DataGrid/DataGridDisplay";
 
+
 const addCommas = /\B(?=(\d{3})+(?!\d))/g;
 
 const Twit = () => {
@@ -352,7 +353,7 @@ const Twit = () => {
               )
             )
           )
-        : " "}
+        : ""}
       {!!sentimentData.length ? (
         showGridData && !handleTypeChange ? (
           <DataGridDisplay

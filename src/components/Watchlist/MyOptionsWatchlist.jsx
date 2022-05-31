@@ -30,11 +30,10 @@ const MyOptionsWatchlist = ({ displayWatchlist }) => {
   const [putWatchlistData, setPutWatchlistData] = useState([]);
   const [isCall, setIsCall] = useState(true);
 
-
   const handleIsCall = () => {
     setIsCall(!isCall);
   };
-console.log(optionsInWatchlist);
+  console.log(optionsInWatchlist);
   const getCardColors =
     theme.name === "dark"
       ? {
@@ -57,7 +56,6 @@ console.log(optionsInWatchlist);
         `${process.env.REACT_APP_SERVER_ROUTE}/watchlist/userwatchlist/${loggedInUser.sub}`
       )
       .then((response) => {
-     
         const optionsToQuery = response.data.map((query) => query);
         const optionsDescriptions = response.data.map(
           (query) => query.option_description
@@ -130,7 +128,6 @@ console.log(optionsInWatchlist);
       });
   }, [loggedInUser.sub, setOptionsInWatchlist]);
 
-  //   return <>hi</>;
   return (
     <HomePageOptionsWatchlistContainer displayWatchlist={displayWatchlist}>
       <HomePageDiscussionHeaderContainer>

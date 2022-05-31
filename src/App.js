@@ -31,7 +31,7 @@ function App() {
           <Routes />
         </>
       ) : (
-        <SignupHome lightDarkChange={lightDarkChange}/>
+        <SignupHome lightDarkChange={lightDarkChange} />
       )}
     </ThemeProvider>
   );

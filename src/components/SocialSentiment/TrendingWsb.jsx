@@ -20,6 +20,7 @@ import {
 } from "../../recoil/atoms/globalState";
 import GridToggle from "../Styles/MuiComponents/GridToggle";
 import DataGridDisplay from "../DataGrid/DataGridDisplay";
+import LoadingSpinner from "../Styles/Animations/LoadingSpinner";
 
 const monthNames = [
   "january",
@@ -363,7 +364,7 @@ function TrendingWsb() {
           )
         )
       ) : (
-        <SectorHeader>scanning...</SectorHeader>
+        <LoadingSpinner />
       )}
 
       {!!marketData.length ? (

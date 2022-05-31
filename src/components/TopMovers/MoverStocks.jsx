@@ -18,6 +18,7 @@ import MapCardHeader from "../DataPoints/MapCardHeader";
 import DataGridDisplay from "../DataGrid/DataGridDisplay";
 import GridToggle from "../Styles/MuiComponents/GridToggle";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import LoadingSpinner from "../Styles/Animations/LoadingSpinner";
 
 let header = [];
 
@@ -260,7 +261,7 @@ function MoverStocks() {
           ""
         )
       ) : (
-        " "
+        <LoadingSpinner />
       )}
       {!!marketData.length ? (
         marketData.map((stock) =>
@@ -301,7 +302,7 @@ function MoverStocks() {
           ""
         )
       ) : (
-        " "
+        ""
       )}
       {!!marketData.length
         ? marketData.map((stock) =>

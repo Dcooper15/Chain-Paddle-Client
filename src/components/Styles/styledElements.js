@@ -1385,8 +1385,6 @@ export const StyledKpiItem = styled.div`
   margin: 1% 3%;
   //border: 1px solid #ebedef;
   color: ${(props) => props.theme.accentColor};
-  
- 
 `;
 export const StyledKpiValue = styled.strong`
   display: flex;
@@ -1398,3 +1396,5 @@ export const StyledKpiDescription = styled.p`
   justify-content: center;
   font-size: 18px;
 `;
+
+
