@@ -8,8 +8,9 @@ import { ThemeContext } from "styled-components";
 import { SectorHeader } from "../Styles/styledElements";
 import { useStyles } from "../Styles/muiStyles";
 import axios from "axios";
-import { useParams } from "react-router";
+//import { useParams } from "react-router";
 import { Card, Button } from "@material-ui/core";
+import SectorItemsMenu from "./SectorItemsMenu";
 import DataGridDisplay from "../DataGrid/DataGridDisplay";
 import MapCardHeader from "../DataPoints/MapCardHeader";
 import MapDataPoints from "../DataPoints/MapDataPoints";
@@ -22,23 +23,30 @@ function SectorStocks() {
   const classes = useStyles();
   const theme = useContext(ThemeContext);
   const [dataArray, setDataArray] = useState([]);
+  const [sectorSelected, setSectorSelected] = useState("Finance");
   const [handleTypeChange, setHandleTypeChange] = useState(false);
   const [showGridData, setShowGridData] = useRecoilState(dataDisplayState);
 
   const toggleGrid = () => setShowGridData(!showGridData);
 
-  const { sector } = useParams();
+  //const { sector } = useParams();
 
   const buttonHandlerPut = () => {
     setHandleTypeChange(true);
   };
+
   const buttonHandlerCall = () => {
     setHandleTypeChange(false);
   };
 
+  console.log(sectorSelected);
+  const selectSector = (selection) => {
+    setSectorSelected(selection);
+  };
+
   let sectorError = [];
-  switch (sector) {
-    case "tech":
+  switch (sectorSelected) {
+    case "Tech":
       symbolArray = [
         "AMD",
         "SONY",
@@ -54,46 +62,42 @@ function SectorStocks() {
         "SNOW",
       ];
       break;
-    case "entertainment":
+    case "Entertainment":
       symbolArray = ["AMC", "ATVI", "DIS", "MGM", "WYNN"];
       break;
-    case "airline":
+    case "Airlines":
       symbolArray = ["ALGT", "DAL", "LUV", "ALK", "UAL", "AAL", "SAVE", "BA"];
       break;
-    case "finance":
+    case "Finance":
       symbolArray = ["AXP", "BAC", "C", "JPM", "WFC"];
       break;
-    case "oil":
+    case "Oil":
       symbolArray = ["PXD", "COP", "MPC", "OXY", "CVX", "XOM", "BP"];
       break;
-    case "cannabis":
+    case "Cannabis":
       symbolArray = ["CRON", "ACB", "TLRY", "HEXO", "SNDL", "IGC", "OGI"];
       break;
-    case "pharmaceutics":
+    case "Pharmaceutics":
       symbolArray = ["JNJ", "PFE", "MRNA", "AZN", "AMGN", "BNTX", "SGEN"];
       break;
-    case "energy":
+    case "Alternative Energy":
       symbolArray = ["NEE", "FSLR", "SEDG", "PLUG", "BLNK", "ENPH", "SPWR"];
       break;
-    case "automotive":
+    case "Automotive":
       symbolArray = ["HYLN", "GM", "NIO", "CVNA", "F", "TSLA", "RIDE", "WKHS"];
       break;
-    case "grocery":
+    case "Grocery":
       symbolArray = ["WMT", "ACI", "COST", "KR", "GO", "BJ", "TGT"];
       break;
-    case "crypto":
+    case "Crypto":
       symbolArray = ["MARA", "RIOT", "BTCM", "BITF", "BITQ", "HUT", "COIN"];
       break;
-    case "social":
+    case "Social Media":
       symbolArray = ["PINS", "TWTR", "FB", "SNAP"];
       break;
     default:
-      sectorError = `No data to display for ${sector}.`;
+      sectorError = `No data to display for ${sectorSelected}.`;
   }
-
-  const capHeader = (header) => {
-    return header.charAt(0).toUpperCase() + header.slice(1);
-  };
 
   const getButtonColor = theme.name === "dark" ? "#fff" : "#F8E4A5";
   const getCardColors =
@@ -120,18 +124,18 @@ function SectorStocks() {
           setDataArray([chainData]);
         })
     );
-  }, [sector]);
+  }, [sectorSelected]);
 
   return (
     <>
+      <SectorItemsMenu
+        sectorSelector={selectSector}
+        sectorSelected={sectorSelected}
+      />
       {!!sectorError.length ? (
-        <SectorHeader>{capHeader(sectorError)}</SectorHeader>
+        <SectorHeader>{sectorError}</SectorHeader>
       ) : (
-        <SectorHeader>
-          {sector === "energy"
-            ? "Alternative " + capHeader(sector)
-            : capHeader(sector)}
-        </SectorHeader>
+        <SectorHeader>{sectorSelected}</SectorHeader>
       )}
       <Button
         className={
@@ -185,28 +189,30 @@ function SectorStocks() {
       ) : (
         " "
       )}
-      {!!dataArray.length
-        ? dataArray.map((stock) =>
-            stock.map((option) =>
-              !showGridData ? (
-                <Card
-                  key={option.symbol}
-                  className={classes.card}
-                  style={getCardColors}
-                  variant="outlined"
-                  hidden={handleTypeChange === true}
-                  raised={true}
-                >
-                  <MapCardHeader option={option} />
+      {!!dataArray.length ? (
+        dataArray.map((stock) =>
+          stock.map((option) =>
+            !showGridData ? (
+              <Card
+                key={option.symbol}
+                className={classes.card}
+                style={getCardColors}
+                variant="outlined"
+                hidden={handleTypeChange === true}
+                raised={true}
+              >
+                <MapCardHeader option={option} />
 
-                  <MapDataPoints option={option} mapType={"call"} />
-                </Card>
-              ) : (
-                ""
-              )
+                <MapDataPoints option={option} mapType={"call"} />
+              </Card>
+            ) : (
+              ""
             )
           )
-        : <LoadingSpinner />}
+        )
+      ) : (
+        <LoadingSpinner />
+      )}
       {!!dataArray.length ? (
         showGridData && handleTypeChange ? (
           <DataGridDisplay

@@ -4,7 +4,7 @@ import ProtectedRoute from "../auth/protected-route";
 import MainTopMovers from "../TopMovers/MainTopMovers";
 import MoverStocks from "../TopMovers/MoverStocks";
 import FullOptionChain from "../OptionChain/FullOptionChain";
-import MainSectors from "../Sectors/MainSectors";
+//import MainSectors from "../Sectors/MainSectors";
 import SectorStocks from "../Sectors/SectorStocks";
 import MainSocialSentiment from "../SocialSentiment/MainSocialSentiment";
 import TrendingWsb from "../SocialSentiment/TrendingWsb";
@@ -24,7 +24,7 @@ const Routes = () => {
 
           <MainMenu />
         </Route>
-        <ProtectedRoute exact path="/sector" component={MainSectors} />
+        <ProtectedRoute exact path="/sector" component={SectorStocks} />
 
         <ProtectedRoute exact path="/topmovers" component={MainTopMovers} />
 
