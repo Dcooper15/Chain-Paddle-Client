@@ -1371,7 +1371,6 @@ export const KpiRow = styled.div`
   align-items: center;
   height: 40%;
   width: 100%;
-  //border: 1px solid #ebedef;
   border-radius: 10px;
   text-align: center;
   justify-content: center;
@@ -1383,7 +1382,6 @@ export const StyledKpiItem = styled.div`
   width: 50%;
   padding: 1%;
   margin: 1% 3%;
-  //border: 1px solid #ebedef;
   color: ${(props) => props.theme.accentColor};
 `;
 export const StyledKpiValue = styled.strong`
@@ -1397,4 +1395,30 @@ export const StyledKpiDescription = styled.p`
   font-size: 18px;
 `;
 
+// sector items
+export const SectorItemsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  height: 30%;
+  margin: 0.75rem 2%;
+  text-align: center;
+`;
 
+export const StyledSectorItem = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  border: 0.5px solid ${(props) => props.theme.headerColor};
+  border-radius: 10px;
+  margin: 1%;
+  padding-left: 4%;
+  padding-right: 4%;
+ 
+`;
+
+export const SectorText = styled.p`
+  font-weight: bold;
+  margin: 0;
+`;
