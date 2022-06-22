@@ -1415,10 +1415,22 @@ export const StyledSectorItem = styled.div`
   margin: 1%;
   padding-left: 4%;
   padding-right: 4%;
- 
 `;
 
 export const SectorText = styled.p`
   font-weight: bold;
   margin: 0;
+`;
+
+//common
+
+export const CommonSubHeader = styled.p`
+  color: ${(props) => props.theme.headerColor};
+  margin-left: 2%;
+`;
+
+export const CommonNoData = styled.p`
+  color: ${(props) => props.theme.accentColor};
+  margin-left: 2%;
+  font-weight: lighter;
 `;
