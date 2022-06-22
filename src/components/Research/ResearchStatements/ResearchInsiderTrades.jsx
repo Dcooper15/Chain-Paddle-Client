@@ -9,7 +9,11 @@ import { ThemeContext } from "styled-components";
 import { Button } from "@material-ui/core";
 import axios from "axios";
 //import { uuid } from "uuidv4";
-import { StyledResearchIncStateYears } from "../../Styles/styledElements";
+import {
+  StyledResearchIncStateYears,
+  CommonSubHeader,
+  CommonNoData,
+} from "../../Styles/styledElements";
 import InsiderSentiment from "./InsiderSentiment";
 import InsiderTradesCard from "./InsiderTradesCard";
 import { useStyles } from "../../Styles/muiStyles";
@@ -100,8 +104,6 @@ const InsiderTrading = ({
     [insiderData, selectedYear]
   );
 
-  console.log("selected year", selectedYear);
-
   try {
     return (
       <>
@@ -110,30 +112,39 @@ const InsiderTrading = ({
         ) : (
           ""
         )}
-        {!!insiderYears.length
-          ? insiderYears.map((year) => (
-              <StyledResearchIncStateYears dataSelection={dataSelection}>
-                <Button
-                  className={classes.buttonExp}
-                  value={year}
-                  size="small"
-                  onClick={() => setSelectedYear(year)}
-                  style={{
-                    background:
-                      year === selectedYear
-                        ? theme.name === "dark"
-                          ? "black"
-                          : "white"
-                        : "none",
-                    marginBottom: "0",
-                    color: theme.name === "dark" ? "#d4af37" : "#146175",
-                  }}
-                >
-                  {year}
-                </Button>
-              </StyledResearchIncStateYears>
-            ))
-          : ""}
+        {dataSelection === "insider trades" ? (
+          <>
+            <CommonSubHeader>View Individual Trades by Year</CommonSubHeader>
+            {!!insiderYears.length ? (
+              insiderYears.map((year) => (
+                <StyledResearchIncStateYears dataSelection={dataSelection}>
+                  <Button
+                    className={classes.buttonExp}
+                    value={year}
+                    size="small"
+                    onClick={() => setSelectedYear(year)}
+                    style={{
+                      background:
+                        year === selectedYear
+                          ? theme.name === "dark"
+                            ? "black"
+                            : "white"
+                          : "none",
+                      marginBottom: "0",
+                      color: theme.name === "dark" ? "#d4af37" : "#146175",
+                    }}
+                  >
+                    {year}
+                  </Button>
+                </StyledResearchIncStateYears>
+              ))
+            ) : (
+              <CommonNoData>No individual trades available</CommonNoData>
+            )}
+          </>
+        ) : (
+          ""
+        )}
 
         {!!insiderData.length &&
         dataSelection === "insider trades" &&
